@@ -9,9 +9,14 @@ const config: Config = {
   theme: {
     darkMode: "class",
 
+    fontFamily: {
+      retro: ["Bree Serif"],
+      heading: ["Nova Square"],
+    },
+
     extend: {
       colors: {
-        "main-color": "#FFBA00",
+        "main-color": "#f1c40f",
         "dark-color": "#090f13",
       },
       backgroundImage: {

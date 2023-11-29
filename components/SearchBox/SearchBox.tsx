@@ -1,12 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { TbSearch } from "react-icons/tb";
 import { RxCross1 } from "react-icons/rx";
+import { LuSearch } from "react-icons/lu";
 
 const SearchBox = () => {
+  const [mobileSearch, setMobileSearch] = useState(false);
+  const [isActiveMobile, setIsActiveMobile] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const toggleMobileSearch = () => {
+    setMobileSearch((prev) => !prev);
+  };
+
   useEffect(() => {
     const items: string[] = [];
     const clearArrayTimer: number | null = null;
@@ -40,74 +47,129 @@ const SearchBox = () => {
   }, []);
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-      onMouseEnter={() => {
-        setIsActive(true);
-      }}
-      onMouseLeave={() => {
-        if (
-          !(document.activeElement === inputRef.current) &&
-          inputRef.current?.value == ""
-        ) {
-          setIsActive(false);
-        }
-      }}
-      className={
-        " w-full relative pl-2 rounded-xl flex   items-center overflow-hidden transition-colors duration-300 " +
-        (isActive ? "bg-white" : "bg-gray-600") +
-        " sm:visible invisible"
-      }
-    >
-      <TbSearch
-        className={
-          "transition-colors duration-300 " +
-          (isActive ? "text-black" : "text-slate-700")
-        }
-      />
-
-      <input
-        onFocus={() => setIsActive(true)}
-        onBlur={(e) => {
-          if (e.target.value == "") setIsActive(false);
+    <>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
         }}
-        ref={inputRef}
-        type="text"
-        placeholder="Search Games Here"
+        onMouseEnter={() => {
+          setIsActive(true);
+        }}
+        onMouseLeave={() => {
+          if (
+            !(document.activeElement === inputRef.current) &&
+            inputRef.current?.value == ""
+          ) {
+            setIsActive(false);
+          }
+        }}
         className={
-          "w-full mr-4 transition-colors duration-300 p-2 focus:outline-none font-bold " +
-          (isActive ? "bg-white" : "bg-gray-600")
-        }
-      />
-
-      <button
-        type="reset"
-        onClick={() => inputRef.current?.focus()}
-        className={
-          "absolute z-10 right-2 font-bold transition-opacity duration-300 " +
-          (!isActive ? " opacity-0" : "opacity-100")
-        }
-      >
-        <RxCross1 />
-      </button>
-
-      <p
-        className={
-          "absolute text-slate-400 transition-opacity duration-300 right-3 " +
-          (!isActive ? "opacity-100" : "invisible opacity-0")
+          "w-full relative pl-2 border-b-4  flex   items-center overflow-hidden transition-colors duration-300 " +
+          (isActive
+            ? "bg-white border-green-500 "
+            : "bg-gray-600 border-gray-600") +
+          " sm:visible invisible"
         }
       >
-        <span className=" text-xs border-[1px] bg-opacity-30 border-slate-400 p-[.3rem] pt-0 pb-0">
-          alt
-        </span>{" "}
-        +{" "}
-        <span className=" text-xs border-[1px] bg-opacity-30 border-slate-400 p-[.3rem] pt-0 pb-0">
-          enter
-        </span>
-      </p>
-    </form>
+        <LuSearch
+          className={
+            "transition-colors duration-300 " +
+            (isActive ? "text-black" : "text-slate-700")
+          }
+        />
+
+        <input
+          onFocus={() => setIsActive(true)}
+          onBlur={(e) => {
+            if (e.target.value == "") setIsActive(false);
+          }}
+          ref={inputRef}
+          type="text"
+          placeholder="Search Games Here"
+          className={
+            "w-full peer mr-4 transition-colors  duration-300 p-2 focus:outline-none font-bold " +
+            (isActive ? "bg-white" : "bg-gray-600")
+          }
+        />
+
+        <button
+          type="reset"
+          onClick={() => inputRef.current?.focus()}
+          className={
+            "absolute z-10 right-2 font-bold transition-opacity duration-300 " +
+            (!isActive ? " opacity-0" : "opacity-100")
+          }
+        >
+          <RxCross1 />
+        </button>
+
+        <p
+          className={
+            "absolute text-slate-300 font-retro transition-opacity text-sm duration-300 right-3 " +
+            (!isActive ? "opacity-100" : "invisible opacity-0")
+          }
+        >
+          <span className="  border-[1px] rounded-sm border-opacity-70 border-slate-300 p-2 pt-0 pb-0">
+            alt
+          </span>{" "}
+          +{" "}
+          <span className="  border-[1px] rounded-sm border-opacity-70 border-slate-300 p-2 pt-0 pb-0">
+            enter
+          </span>
+        </p>
+      </form>
+
+      <div className="visible sm:invisible flex justify-center">
+        <button className="text-xl" onClick={() => toggleMobileSearch()}>
+          <LuSearch className={"active:hover:text-main-color text-white"} />
+        </button>
+
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+          className={
+            " w-[95vw] mt-10 left-[50%] translate-x-[-50%] z-30 absolute pl-2 border-b-4 flex items-center overflow-hidden transition-all duration-300 " +
+            (isActiveMobile
+              ? "bg-white focus:invalid:border-red-500  border-green-500 "
+              : "bg-gray-600 border-gray-600") +
+            (mobileSearch ? " visible opacity-100 " : " invisible opacity-0") +
+            " visible sm:invisible"
+          }
+        >
+          <LuSearch
+            className={
+              "transition-colors duration-300 " +
+              (isActiveMobile ? "text-black" : "text-slate-700")
+            }
+          />
+
+          <input
+            onFocus={() => setIsActiveMobile(true)}
+            onBlur={(e) => {
+              if (e.target.value == "") setIsActiveMobile(false);
+            }}
+            type="text"
+            placeholder="Search Games Here"
+            className={
+              "w-full mr-4 transition-colors duration-300 p-2 focus:outline-none font-bold " +
+              (isActiveMobile ? "bg-white" : "bg-gray-600")
+            }
+          />
+
+          <button
+            type="reset"
+            onClick={() => inputRef.current?.focus()}
+            className={
+              "absolute z-10 right-2 font-bold transition-opacity duration-300 " +
+              (!isActiveMobile ? " opacity-0" : "opacity-100")
+            }
+          >
+            <RxCross1 />
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 
