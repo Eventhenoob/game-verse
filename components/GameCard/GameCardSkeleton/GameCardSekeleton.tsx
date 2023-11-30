@@ -3,15 +3,23 @@ import "react-loading-skeleton/dist/skeleton.css";
 const GameCardSekeleton = () => {
   return (
     <SkeletonTheme baseColor="#202020" highlightColor="#444">
-      <div className="p-2 rounded-xl w-72 shrink-0 bg-zinc-900">
+      <div className="p-0 overflow-hidden rounded-xl w-full sm:w-72 shrink-0 bg-zinc-900">
         <div className="">
-          <Sekeleton className="w-full h-40 rounded-xl" />
+          <Sekeleton height={"10rem"} width={"100%"} borderRadius={0.75} />
         </div>
+
         <div className="mt-3">
-          <Sekeleton className="w-2/3 h-8 rounded-xl" count={1} />
+          <Sekeleton height={"2rem"} borderRadius={0.75} count={1} />
         </div>
-        <div className="flex flex-col mt-4 ">
-          <Sekeleton width={"100%"} height={"15px"} inline={false} count={6} />
+
+        <div className=" mt-4 ">
+          <Sekeleton
+            borderRadius={0.75}
+            className="rounded-xl"
+            height={"15px"}
+            inline={false}
+            count={6}
+          />
         </div>
       </div>
     </SkeletonTheme>
