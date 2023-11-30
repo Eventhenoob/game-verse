@@ -16,7 +16,9 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="./favicon.ico" sizes="any" />
       </head>
-      <body className="dark:bg-dark-color min-h-screen">{children}</body>
+      <body className="dark:bg-dark-color min-h-screen grid grid-cols-5 grid-rows-layout">
+        {children}
+      </body>
     </html>
   );
 }

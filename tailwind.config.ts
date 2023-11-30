@@ -15,6 +15,9 @@ const config: Config = {
     },
 
     extend: {
+      gridTemplateRows: {
+        layout: "min-content, 1fr",
+      },
       colors: {
         "main-color": "#f1c40f",
         "dark-color": "#090f13",
