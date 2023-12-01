@@ -33,7 +33,7 @@ const Navigation = () => {
     <nav className="h-20 gap-2 fixed top-0 left-0 bg-black flex items-center z-50 p-4 pt-2 pb-2 w-full">
       <div className="h-20 gap-2  fixed top-0 left-0 bg-black flex items-center z-50 p-4 pt-2 pb-2 w-full">
         <button
-          className="text-white text-lg relative z-40 sm:hidden hover:active:text-main-color"
+          className="text-white text-lg relative z-40 md:hidden hover:active:text-main-color"
           onClick={(e) => {
             e.stopPropagation();
             toggleIsMobileNavActive();
@@ -45,7 +45,7 @@ const Navigation = () => {
           <Image
             src={"/logosmall.png"}
             alt="Logo"
-            className="text-black h-auto  sm:h-auto sm:w-[100px] w-20"
+            className="text-black h-auto  md:h-auto md:w-[100px] w-20"
             height={128}
             width={347}
           />

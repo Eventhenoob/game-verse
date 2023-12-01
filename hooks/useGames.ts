@@ -17,6 +17,8 @@ const useGames = () => {
       .get<FetchedGamesResponse>("/games")
       .then((res) => {
         if (res.data.results) {
+          console.log(res.data.results);
+
           const data = res.data.results.map((game: GameDataType) => ({
             ...game,
           }));
@@ -35,6 +37,7 @@ const useGames = () => {
       .get<FetchedGamesResponse>("/games", { signal: controler.signal })
       .then((res) => {
         if (res.data.results) {
+          console.log(res.data);
           const data = res.data.results.map((game: GameDataType) => ({
             ...game,
           }));
@@ -48,7 +51,7 @@ const useGames = () => {
       });
 
     return () => {
-      controler.abort;
+      controler.abort();
     };
   }, []);
   return { gamesData, error, retry: FetchAndSetGameData };
