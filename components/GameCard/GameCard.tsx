@@ -1,5 +1,4 @@
 import generatePlatfromLogo from "@/utils/generatePlatfromLogo";
-import Image from "next/image";
 
 interface Platform {
   id: number;
@@ -16,6 +15,7 @@ export interface GameDataType {
 }
 
 const GameCard = ({
+  id,
   name,
   rating,
   released,

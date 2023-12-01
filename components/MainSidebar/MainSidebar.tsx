@@ -181,7 +181,7 @@ const MainSidebar = ({ className }: Props) => {
       <ul className="flex flex-col gap-1">
         <li>
           <Link
-            href={"/"}
+            href={"/browse"}
             className="text-2xl hover:text-main-color transition-all duration-300 flex items-center gap-4 text-white"
           >
             Browse

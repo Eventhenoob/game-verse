@@ -15,6 +15,10 @@ const config: Config = {
     },
 
     extend: {
+      dropShadow: {
+        white: "0 0 0.2rem rgba(241, 196, 15, .60)",
+        whiteMin: "0 0 0.1rem rgba(241, 196, 15, .60)",
+      },
       gridTemplateRows: {
         layout: "min-content, 1fr",
       },

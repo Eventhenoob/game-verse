@@ -12,9 +12,6 @@ interface FetchedGamesResponse {
 export default function Home() {
   return (
     <>
-      <header className="w-full  col-span-full mb-20">
-        <Navigation />
-      </header>
       <MainSidebar className=" fixed hidden md:flex w-1/5 text-white" />
       <main className="md:col-start-2 min-h-[90vh] md:col-end-6 md:pr-4   pt-10 col-span-5">
         <div className="headingText mb-6">
