@@ -16,7 +16,19 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+/* scroll bar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #f1c40f #272727;
+}
 
+html::-webkit-scrollbar-thumb {
+  background-color: #f1c40f;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+}
 .removeScroll {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

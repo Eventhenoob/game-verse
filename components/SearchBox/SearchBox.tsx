@@ -64,9 +64,9 @@ const SearchBox = () => {
           }
         }}
         className={
-          "w-full relative pl-2 border-b-4  flex   items-center overflow-hidden transition-colors duration-300 " +
+          "w-full relative pl-2 border-b-4  flex rounded-md items-center overflow-hidden transition-colors duration-300 " +
           (isActive
-            ? "bg-white border-green-500 "
+            ? "bg-slate-200 border-green-500 "
             : "bg-gray-600 border-gray-600") +
           " sm:visible invisible"
         }
@@ -88,7 +88,7 @@ const SearchBox = () => {
           placeholder="Search Games Here"
           className={
             "w-full peer mr-4 transition-colors  duration-300 p-2 focus:outline-none font-bold " +
-            (isActive ? "bg-white" : "bg-gray-600")
+            (isActive ? "bg-slate-200" : "bg-gray-600")
           }
         />
 
@@ -131,7 +131,7 @@ const SearchBox = () => {
           className={
             " w-[95vw] mt-10 left-[50%] translate-x-[-50%] z-30 absolute pl-2 border-b-4 flex items-center overflow-hidden transition-all duration-300 " +
             (isActiveMobile
-              ? "bg-white focus:invalid:border-red-500  border-green-500 "
+              ? "bg-slate-200 focus:invalid:border-red-500  border-green-500 "
               : "bg-gray-600 border-gray-600") +
             (mobileSearch ? " visible opacity-100 " : " invisible opacity-0") +
             " visible sm:invisible"
@@ -153,7 +153,7 @@ const SearchBox = () => {
             placeholder="Search Games Here"
             className={
               "w-full mr-4 transition-colors duration-300 p-2 focus:outline-none font-bold " +
-              (isActiveMobile ? "bg-white" : "bg-gray-600")
+              (isActiveMobile ? "bg-slate-200" : "bg-gray-600")
             }
           />
 
