@@ -64,6 +64,16 @@ const Navigation = () => {
         <li className="w-full pl-6 ">
           <Link
             onClick={() => setIsMobileNavActive(false)}
+            href={"/browse"}
+            className="text-center inline-flex gap-2 items-center border-b-[1px] hover:active:text-main-color border-slate-300 border-opacity-20"
+          >
+            <BsCollectionFill />
+            Browse
+          </Link>
+        </li>
+        <li className="w-full pl-6 ">
+          <Link
+            onClick={() => setIsMobileNavActive(false)}
             href={"/"}
             className="text-center inline-flex gap-2 items-center border-b-[1px] hover:active:text-main-color border-slate-300 border-opacity-20"
           >
@@ -109,16 +119,6 @@ const Navigation = () => {
           >
             <MdReviews />
             Review
-          </Link>
-        </li>
-        <li className="w-full pl-6 ">
-          <Link
-            onClick={() => setIsMobileNavActive(false)}
-            href={"/"}
-            className="text-center inline-flex gap-2 items-center border-b-[1px] hover:active:text-main-color border-slate-300 border-opacity-20"
-          >
-            <BsCollectionFill />
-            Collection
           </Link>
         </li>
 

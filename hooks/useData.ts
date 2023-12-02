@@ -8,7 +8,7 @@ interface FetchedData<T> {
   results: T[];
 }
 
-const useData = <T>(endpoint: string) => {
+const useData = <T>(endpoint: string, params = {}) => {
   const [data, setData] = useState<T[] | null>(null);
   const [error, setError] = useState("");
 
@@ -16,7 +16,11 @@ const useData = <T>(endpoint: string) => {
     setError("");
 
     rawgApiClient
-      .get<FetchedData<T>>(`/${endpoint}`)
+      .get<FetchedData<T>>(`/${endpoint}`, {
+        params: {
+          ...params,
+        },
+      })
       .then((res) => {
         if (res.data.results) {
           console.log(res.data.results);
@@ -37,7 +41,12 @@ const useData = <T>(endpoint: string) => {
     const controler = new AbortController();
     setError("");
     rawgApiClient
-      .get<FetchedData<T>>(`/${endpoint}`, { signal: controler.signal })
+      .get<FetchedData<T>>(`/${endpoint}`, {
+        signal: controler.signal,
+        params: {
+          ...params,
+        },
+      })
       .then((res) => {
         if (res.data.results) {
           console.log(res.data);

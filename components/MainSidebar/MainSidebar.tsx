@@ -189,7 +189,7 @@ const MainSidebar = ({ className }: Props) => {
         </li>
         <li className="">
           <Link
-            href={"/"}
+            href={"/browse/platforms"}
             className="hover:text-main-color group   transition-all duration-300 flex items-center gap-4 text-white"
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
@@ -200,7 +200,7 @@ const MainSidebar = ({ className }: Props) => {
         </li>
         <li className="">
           <Link
-            href={"/"}
+            href={"/browse/stores"}
             className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 text-white"
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
@@ -211,20 +211,20 @@ const MainSidebar = ({ className }: Props) => {
         </li>
         <li className="">
           <Link
-            href={"/"}
+            href={"/browse/publishers"}
             className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 "
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
               <MdBookmarkAdd className="" />
             </div>
-            Collections
+            Publishers
           </Link>
         </li>
       </ul>
       <ul className="flex flex-col gap-1">
         <li>
           <Link
-            href={"/"}
+            href={"/browse/platforms"}
             className="text-2xl hover:text-main-color transition-all duration-300 flex items-center gap-4 text-white"
           >
             Platforms
@@ -267,7 +267,7 @@ const MainSidebar = ({ className }: Props) => {
       <ul className="flex flex-col gap-1">
         <li>
           <Link
-            href={"/"}
+            href={"/browse/genres"}
             className="text-2xl hover:text-main-color transition-all duration-300 flex items-center gap-4 text-white"
           >
             Genres

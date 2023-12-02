@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
+import MainSidebar from "@/components/MainSidebar";
 
 export const metadata: Metadata = {
   title: "Game Verse",
@@ -21,6 +22,7 @@ export default function RootLayout({
         <header className="w-full  col-span-full mb-20">
           <Navigation />
         </header>
+        <MainSidebar className=" fixed hidden md:flex w-1/5 text-white" />
         {children}
       </body>
     </html>
