@@ -45,16 +45,19 @@ const CategoryCardTray = ({
         <CategoryCardSkeleton />
         <CategoryCardSkeleton />
         <CategoryCardSkeleton />
+        <CategoryCardSkeleton />
       </div>
 
       {categoryData &&
-        categoryData.map((data) => (
+        categoryData.map((data: any) => (
           <CategoryCard
-            key={data.id}
-            games_count={data.games_count}
-            image_background={getCropedImage(data.image_background)}
-            name={data.name}
-            id={data.id}
+            href={`/${categoryType}/${data.id}`}
+            CategoryInfo={{
+              games_count: data.games_count,
+              image_background: getCropedImage(data.image_background),
+              name: data.name,
+              id: data.id,
+            }}
           />
         ))}
     </div>

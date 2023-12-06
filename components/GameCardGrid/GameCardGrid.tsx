@@ -4,8 +4,12 @@ import GameCardSekeleton from "../GameCard/GameCardSkeleton/GameCardSekeleton";
 import useGames from "@/hooks/useGames";
 import { getCropedImage } from "@/services/image-url";
 
-const GameCardGrid = () => {
-  const { error, gamesData, retry } = useGames();
+interface Props {
+  params?: {};
+}
+
+const GameCardGrid = ({ params = {} }: Props) => {
+  const { error, gamesData, retry } = useGames(params);
 
   return (
     <>

@@ -14,7 +14,7 @@ const MainSidebar = ({ className }: Props) => {
       }
     >
       <Link
-        href={"/"}
+        href={"/games"}
         className="text-3xl hover:text-main-color transition-all duration-300 flex items-center gap-2 text-white"
       >
         Home

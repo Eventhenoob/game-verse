@@ -1,7 +1,7 @@
 import { GameDataType } from "@/components/GameCard/GameCard";
 import useData from "./useData";
-const useGames = () => {
-  const { data, error, retry } = useData<GameDataType>("games");
+const useGames = (perams = {}) => {
+  const { data, error, retry } = useData<GameDataType>("games", perams);
   return { gamesData: data, error, retry };
 };
 
