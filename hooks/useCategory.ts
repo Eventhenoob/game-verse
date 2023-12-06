@@ -1,5 +1,5 @@
 "use client";
-import useData from "./useData";
+import useData from "./useDataArr";
 import { CategoryData } from "@/components/CategoryCard/CategoryCard";
 
 const useCategory = (categoryType: string, params = {}) => {

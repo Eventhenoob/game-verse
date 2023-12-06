@@ -16,7 +16,7 @@ interface Props {
 const CategoryCard = ({ CategoryInfo, href }: Props) => {
   return (
     <Link
-      href={href}
+      href={"/games/" + href}
       className="group w-44 h-60  md:w-56 md:h-72 shrink-0 text-white font-heading rounded-tl-3xl cursor-pointer flex flex-col rounded-lg justify-center items-center opacity-100  relative bg-black  overflow-hidden"
     >
       <img

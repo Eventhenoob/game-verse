@@ -1,5 +1,4 @@
 import CategoryCardTray from "@/components/CategoryCardTray";
-import MainSidebar from "@/components/MainSidebar";
 import Link from "next/link";
 
 const page = () => {

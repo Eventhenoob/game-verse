@@ -1,11 +1,14 @@
 "use client";
+import CreatorShowCase from "@/components/CreatorShowCase";
 import GameCardGrid from "@/components/GameCardGrid";
 
-const page = ({ params: { creatorId } }: { params: { creatorId: string } }) => {
+const page = ({ params: { creatorid } }: { params: { creatorid: string } }) => {
   return (
     <main className="mainStylesDefault text-white">
-      {creatorId}
-      <GameCardGrid params={{ creator: creatorId }} />
+      <header className="mb-10 bg-gray-700 pt-10 pb-10 bg-opacity-50 rounded-3xl">
+        <CreatorShowCase creatorid={creatorid} />
+      </header>
+      <GameCardGrid params={{ creators: creatorid }} />
     </main>
   );
 };

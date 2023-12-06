@@ -1,23 +1,34 @@
 "use client";
 import rawgApiClient from "@/services/rawg-api-client";
 import { CanceledError } from "axios";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+
+interface FetchedData<T> {
+  count: number;
+  results: T[];
+}
 
 const useData = <T>(endpoint: string, params = {}) => {
-  const [data, setData] = useState<T | null>(null);
+  const [data, setData] = useState<T[] | null>(null);
   const [error, setError] = useState("");
 
   const FetchAndSetData = () => {
     setError("");
 
     rawgApiClient
-      .get<T>(`/${endpoint}`, {
+      .get<FetchedData<T>>(`/${endpoint}`, {
         params: {
           ...params,
         },
       })
       .then((res) => {
-        if (res.data) setData(res.data);
+        if (res.data.results) {
+          const data = res.data.results.map((data: T) => ({
+            ...data,
+          }));
+
+          setData(data);
+        }
       })
       .catch((e) => {
         setError(e.message);
@@ -28,14 +39,20 @@ const useData = <T>(endpoint: string, params = {}) => {
     const controler = new AbortController();
     setError("");
     rawgApiClient
-      .get<T>(`/${endpoint}`, {
+      .get<FetchedData<T>>(`/${endpoint}`, {
         signal: controler.signal,
         params: {
           ...params,
         },
       })
       .then((res) => {
-        if (res.data) setData(res.data);
+        if (res.data.results) {
+          const data = res.data.results.map((data: T) => ({
+            ...data,
+          }));
+
+          setData(data);
+        }
       })
       .catch((e) => {
         if (e instanceof CanceledError) return;
@@ -49,5 +66,4 @@ const useData = <T>(endpoint: string, params = {}) => {
 
   return { data, error, retry: FetchAndSetData };
 };
-
 export default useData;
