@@ -3,6 +3,7 @@ import useCreator from "@/hooks/useCreator";
 import parse from "html-react-parser";
 import ApiErrorHandler from "../ApiErrorHandler";
 import CreatorShowCaseSkeleton from "./CreatorShowCaseSkeleton";
+import { getCropedImage } from "@/services/image-url";
 
 export interface creatorData {
   name: string;

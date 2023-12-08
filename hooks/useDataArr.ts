@@ -8,7 +8,7 @@ interface FetchedData<T> {
   results: T[];
 }
 
-const useData = <T>(endpoint: string, params = {}) => {
+const useDataArr = <T>(endpoint: string, params = {}) => {
   const [data, setData] = useState<T[] | null>(null);
   const [error, setError] = useState("");
 
@@ -66,4 +66,4 @@ const useData = <T>(endpoint: string, params = {}) => {
 
   return { data, error, retry: FetchAndSetData };
 };
-export default useData;
+export default useDataArr;

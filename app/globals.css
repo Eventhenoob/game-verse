@@ -48,3 +48,7 @@ html::-webkit-scrollbar {
 .mainStylesDefault {
   @apply md:col-start-2 min-h-[90vh] md:col-end-6 md:pr-4   pt-10 col-span-5;
 }
+
+h3 {
+  @apply text-2xl;
+}
