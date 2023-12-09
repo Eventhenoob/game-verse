@@ -1,9 +1,8 @@
 "use client";
 import useCreator from "@/hooks/useCreator";
 import parse from "html-react-parser";
-import ApiErrorHandler from "../ApiErrorHandler";
+import ApiErrorHandler from "@/components/ApiErrorHandler";
 import CreatorShowCaseSkeleton from "./CreatorShowCaseSkeleton";
-import { getCropedImage } from "@/services/image-url";
 
 export interface creatorData {
   name: string;
@@ -21,10 +20,10 @@ interface Props {
 
 const CreatorShowCase = ({ creatorid }: Props) => {
   const { creatorData, error, retry } = useCreator(creatorid);
-  <ApiErrorHandler error={error} retry={retry} />;
 
   return (
     <>
+      <ApiErrorHandler error={error} retry={retry} />;
       <div
         className={
           "flex flex-col w-10/12 m-auto gap-4 " +

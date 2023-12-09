@@ -1,6 +1,6 @@
 "use client";
 import GameCardGrid from "@/components/GameCardGrid";
-import PlatfromShowCase from "@/components/PlatformShowCase";
+import PlatfromShowCase from "@/components/ShowCases/PlatformShowCase";
 
 const page = ({
   params: { platformId },

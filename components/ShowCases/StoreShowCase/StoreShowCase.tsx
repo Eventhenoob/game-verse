@@ -1,5 +1,5 @@
 import useStore from "@/hooks/useStore";
-import ApiErrorHandler from "../ApiErrorHandler";
+import ApiErrorHandler from "@/components/ApiErrorHandler";
 import StoreShowCaseSkeleton from "./StoreShowCaseSkeleton";
 import parse from "html-react-parser";
 

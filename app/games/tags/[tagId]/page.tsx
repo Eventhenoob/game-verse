@@ -1,6 +1,6 @@
 "use client";
 import GameCardGrid from "@/components/GameCardGrid";
-import TagShowCase from "@/components/TagShowCase";
+import TagShowCase from "@/components/ShowCases/TagShowCase";
 
 const page = ({ params: { tagId } }: { params: { tagId: string } }) => {
   return (

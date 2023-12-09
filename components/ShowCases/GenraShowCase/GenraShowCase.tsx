@@ -1,6 +1,6 @@
 import parse from "html-react-parser";
 import useGenra from "@/hooks/useGenra";
-import ApiErrorHandler from "../ApiErrorHandler";
+import ApiErrorHandler from "@/components/ApiErrorHandler";
 import GenraShowCaseSkeleton from "./GenraShowCase/Skeleton";
 
 interface Props {

@@ -1,7 +1,7 @@
 "use client";
 
 import usePublishers from "@/hooks/usePublishers";
-import ApiErrorHandler from "../ApiErrorHandler";
+import ApiErrorHandler from "@/components/ApiErrorHandler";
 import PublisherShowCaseSkeleton from "./PublisherShowCaseSkeleton";
 import parse from "html-react-parser";
 

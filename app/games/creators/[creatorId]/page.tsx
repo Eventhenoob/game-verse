@@ -1,5 +1,5 @@
 "use client";
-import CreatorShowCase from "@/components/CreatorShowCase";
+import CreatorShowCase from "@/components/ShowCases/CreatorShowCase";
 import GameCardGrid from "@/components/GameCardGrid";
 
 const page = ({ params: { creatorid } }: { params: { creatorid: string } }) => {

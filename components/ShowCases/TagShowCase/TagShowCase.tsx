@@ -1,6 +1,6 @@
 import useTag from "@/hooks/useTag";
 import React from "react";
-import ApiErrorHandler from "../ApiErrorHandler";
+import ApiErrorHandler from "@/components/ApiErrorHandler";
 import TagShowCaseSkeleton from "./TagShowCaseSkeleton";
 
 export interface TagData {

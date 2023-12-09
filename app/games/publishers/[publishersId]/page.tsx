@@ -1,6 +1,6 @@
 "use client";
 import GameCardGrid from "@/components/GameCardGrid";
-import PublishersShowCase from "@/components/PublishersShowCase";
+import PublishersShowCase from "@/components/ShowCases/PublishersShowCase";
 
 const page = ({
   params: { publishersId },

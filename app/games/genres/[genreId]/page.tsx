@@ -1,6 +1,6 @@
 "use client";
 import GameCardGrid from "@/components/GameCardGrid";
-import GenraShowCase from "@/components/GenraShowCase";
+import GenraShowCase from "@/components/ShowCases/GenraShowCase";
 
 const page = ({ params: { genreId } }: { params: { genreId: string } }) => {
   return (

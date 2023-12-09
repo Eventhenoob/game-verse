@@ -1,4 +1,5 @@
 import generatePlatfromLogo from "@/utils/generatePlatfromLogo";
+import Link from "next/link";
 
 interface Platform {
   id: number;
@@ -23,7 +24,10 @@ const GameCard = ({
   parent_platforms,
 }: GameDataType) => {
   return (
-    <div className="p-0 overflow-hidden hover:scale-110 transition-all duration-200 shadow-2xl cursor-pointer active:scale-105 rounded-xl w-full sm:w-72 shrink-0 bg-zinc-900">
+    <Link
+      href={`/game/${id}`}
+      className="p-0 overflow-hidden hover:scale-110 transition-all duration-200 shadow-2xl cursor-pointer active:scale-105 rounded-xl w-full sm:w-72 shrink-0 bg-zinc-900"
+    >
       <img
         alt={name}
         src={background_image}
@@ -50,7 +54,7 @@ const GameCard = ({
           </li>
         </ul>
       </div>
-    </div>
+    </Link>
   );
 };
 

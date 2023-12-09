@@ -2,7 +2,7 @@
 
 import usePlatform from "@/hooks/usePlatform";
 import parse from "html-react-parser";
-import ApiErrorHandler from "../ApiErrorHandler";
+import ApiErrorHandler from "@/components/ApiErrorHandler";
 import PlatformShowCaseSkeleton from "./PlatformShowCaseSkeleton";
 
 export interface PlatformData {
