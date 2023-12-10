@@ -15,7 +15,7 @@ const ArrowFloatingButton = ({
     <button
       disabled={isDisabled}
       className={
-        "rounded-full flex justify-center items-center text-3xl absolute top-0 translate-y-48 z-30 text-black bg-white h-12 w-12 hover:scale-110 transition-all duration-200 active:scale-95 " +
+        "rounded-full flex justify-center items-center text-3xl absolute top-[50%] -translate-y-[50%] z-30 text-black bg-white h-12 w-12 hover:scale-110 transition-all duration-200 active:scale-95 " +
         (direction === "left" ? "left-3" : "right-3") +
         " " +
         (isDisabled

@@ -35,13 +35,13 @@ const CreatorShowCase = ({ creatorid }: Props) => {
       <div className="flex  flex-col w-10/12 m-auto gap-4 text-white ">
         {creatorData && (
           <>
-            <div className="flex items-center gap-5">
-              <h3 className="font-heading text-3xl">{creatorData.name}</h3>
+            <div className="flex md:flex-row flex-col items-center gap-5">
               <img
                 src={creatorData.image}
                 alt={creatorData.name}
                 className="w-20 h-20 overflow-hidden rounded-full object-center"
               />
+              <h3 className="font-heading text-3xl">{creatorData.name}</h3>
             </div>
             <div className="font-retro leading-7 tracking-wider">
               {parse(creatorData.description)}
