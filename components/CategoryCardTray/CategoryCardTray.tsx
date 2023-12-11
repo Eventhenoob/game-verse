@@ -4,6 +4,8 @@ import CategoryCard from "../CategoryCard";
 import ApiErrorHandler from "../ApiErrorHandler";
 import { getCropedImage } from "@/services/image-url";
 import CategoryCardSkeleton from "../CategoryCard/CategoryCardSkeleton";
+import { useEffect, useState } from "react";
+import { CategoryData } from "../CategoryCard/CategoryCard";
 
 interface Props {
   categoryType: string;
@@ -16,9 +18,54 @@ const CategoryCardTray = ({
   scroll = true,
   page_size = 8,
 }: Props) => {
-  const { categoryData, error, retry } = useCategory(categoryType, {
+  const { categoryData, error, retry, next } = useCategory(categoryType, {
     page_size,
   });
+  const [pageCounter, setPageCounter] = useState(1);
+  const [currentNext, setCurrentNext] = useState<string | null>("");
+  const [currentCategoryData, setCurrentCategoryData] = useState<
+    CategoryData[]
+  >([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const updateCategoryData = () => {
+    if (categoryData && currentNext != next) {
+      console.log("data updating");
+      setCurrentCategoryData((prev) => [...prev, ...categoryData]);
+      setCurrentNext(next);
+      setIsLoading(false);
+    }
+  };
+
+  const loadMore = () => {
+    retry({ page: pageCounter + 1 });
+    setPageCounter((prev) => prev + 1);
+  };
+
+  useEffect(() => {
+    if (isLoading) {
+      loadMore();
+    }
+  }, [isLoading]);
+
+  const setLoadingTrue = () => {
+    if (
+      window.innerWidth + document.documentElement.scrollTop >=
+        document.documentElement.scrollHeight &&
+      currentNext != null
+    ) {
+      setIsLoading(true);
+    }
+  };
+
+  useEffect(() => {
+    if (scroll == false) {
+      window.addEventListener("scroll", setLoadingTrue);
+      return () => window.removeEventListener("scroll", setLoadingTrue);
+    }
+  }, []);
+
+  useEffect(updateCategoryData, [categoryData]);
 
   return (
     <div
@@ -27,7 +74,19 @@ const CategoryCardTray = ({
         (scroll ? "" : " flex-wrap justify-evenly")
       }
     >
-      <ApiErrorHandler error={error} retry={retry} />
+      {currentCategoryData &&
+        currentCategoryData.map((data: any) => (
+          <CategoryCard
+            href={`/${categoryType}/${data.id}`}
+            CategoryInfo={{
+              games_count: data.games_count,
+              image_background: getCropedImage(data.image_background),
+              name: data.name,
+              id: data.id,
+            }}
+          />
+        ))}
+
       <div
         className={
           " m-auto flex gap-10 " +
@@ -47,19 +106,11 @@ const CategoryCardTray = ({
         <CategoryCardSkeleton />
         <CategoryCardSkeleton />
       </div>
-
-      {categoryData &&
-        categoryData.map((data: any) => (
-          <CategoryCard
-            href={`/${categoryType}/${data.id}`}
-            CategoryInfo={{
-              games_count: data.games_count,
-              image_background: getCropedImage(data.image_background),
-              name: data.name,
-              id: data.id,
-            }}
-          />
-        ))}
+      <ApiErrorHandler
+        isNextNull={currentNext !== null}
+        error={error}
+        retry={retry}
+      />
     </div>
   );
 };

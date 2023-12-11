@@ -75,7 +75,6 @@ const GameCardGrid = ({ params = {} }: Props) => {
       <div className="flex items-center md:justify-start mb-8 justify-end pr-6 pl-6">
         <OrderByTray setValueFunction={setCurrentOrder} />
       </div>
-      <ApiErrorHandler error={error} retry={retry} />
 
       <div
         className={
@@ -112,6 +111,11 @@ const GameCardGrid = ({ params = {} }: Props) => {
         <GameCardSekeleton />
         <GameCardSekeleton />
       </div>
+      <ApiErrorHandler
+        isNextNull={currentNext !== null}
+        error={error}
+        retry={retry}
+      />
     </>
   );
 };

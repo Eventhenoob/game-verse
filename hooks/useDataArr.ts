@@ -28,7 +28,6 @@ const useDataArr = <T>(endpoint: string, params = {}) => {
       })
       .then((res) => {
         if (res.data.results) {
-          console.log(res.data);
           const data = res.data.results.map((data: T) => ({
             ...data,
           }));

@@ -20,13 +20,6 @@ const MainSidebar = ({ className }: Props) => {
         Home
       </Link>
 
-      <Link
-        href={"/"}
-        className="text-3xl hover:text-main-color transition-all duration-300 flex items-center gap-2 text-white"
-      >
-        Reviews
-      </Link>
-
       <ul className="flex flex-col gap-1">
         <li>
           <Link
@@ -59,120 +52,10 @@ const MainSidebar = ({ className }: Props) => {
             My Library
           </Link>
         </li>
-        <li className="">
-          <Link
-            href={"/"}
-            className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 "
-          >
-            <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdBookmarkAdd className="" />
-            </div>
-            People you follow
-          </Link>
-        </li>
-      </ul>
-
-      <ul className="flex flex-col gap-1">
-        <li>
-          <Link
-            href={"/"}
-            className="text-3xl hover:text-main-color transition-all duration-300 flex items-center gap-4 text-white"
-          >
-            New Releases
-          </Link>
-        </li>
-        <li className="">
-          <Link
-            href={"/"}
-            className="hover:text-main-color group   transition-all duration-300 flex items-center gap-4 text-white"
-          >
-            <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdBookmarkAdd className="" />
-            </div>
-            Last 30 days
-          </Link>
-        </li>
-        <li className="">
-          <Link
-            href={"/"}
-            className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 text-white"
-          >
-            <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdLibraryAdd />
-            </div>
-            This week
-          </Link>
-        </li>
-        <li className="">
-          <Link
-            href={"/"}
-            className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 "
-          >
-            <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdBookmarkAdd className="" />
-            </div>
-            Next week
-          </Link>
-        </li>
-        <li className="">
-          <Link
-            href={"/"}
-            className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 "
-          >
-            <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdBookmarkAdd className="" />
-            </div>
-            Release calendar
-          </Link>
-        </li>
-      </ul>
-
-      <ul className="flex flex-col gap-1">
-        <li>
-          <Link
-            href={"/"}
-            className="text-3xl hover:text-main-color transition-all duration-300 flex items-center gap-4 text-white"
-          >
-            Top
-          </Link>
-        </li>
-        <li className="">
-          <Link
-            href={"/"}
-            className="hover:text-main-color group   transition-all duration-300 flex items-center gap-4 text-white"
-          >
-            <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdBookmarkAdd className="" />
-            </div>
-            Best of the year
-          </Link>
-        </li>
-        <li className="">
-          <Link
-            href={"/"}
-            className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 text-white"
-          >
-            <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdLibraryAdd />
-            </div>
-            Popular in 2022
-          </Link>
-        </li>
-        <li className="">
-          <Link
-            href={"/"}
-            className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 "
-          >
-            <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdBookmarkAdd className="" />
-            </div>
-            All time top 250
-          </Link>
-        </li>
       </ul>
 
       <Link
-        href={"/"}
+        href={"/games"}
         className="text-3xl hover:text-main-color transition-all duration-300 flex items-center  text-white"
       >
         All Games
