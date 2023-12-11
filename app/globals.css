@@ -29,6 +29,10 @@ html::-webkit-scrollbar-thumb {
 html::-webkit-scrollbar {
   width: 10px;
 }
+
+.removeScroll::-webkit-scrollbar {
+  display: none;
+}
 .removeScroll {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

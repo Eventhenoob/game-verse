@@ -62,7 +62,7 @@ const GameImageShowCase = ({ gameId }: Props) => {
               onClick={() => changeImage("right")}
             />
             <img
-              src={getCropedImage(gameScreenShortData[currentImage].image)}
+              src={getCropedImage(gameScreenShortData[currentImage]?.image)}
               alt="game image"
               className="w-full rounded-xl"
             />
