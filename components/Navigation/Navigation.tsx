@@ -20,7 +20,9 @@ const Navigation = () => {
   const [isMobNavActive, setIsMobileNavActive] = useState(false);
 
   useEffect(() => {
-    const deactivateMobileNav = () => setIsMobileNavActive(false);
+    const deactivateMobileNav = () => {
+      setIsMobileNavActive(false);
+    };
     window.addEventListener("click", deactivateMobileNav);
 
     return () => window.removeEventListener("click", deactivateMobileNav);

@@ -54,11 +54,9 @@ const GameCardGrid = ({ params = {} }: Props) => {
   }, [isLoading]);
 
   const setLoadingTrue = () => {
-    if (
-      window.innerWidth + document.documentElement.scrollTop >=
-        document.documentElement.scrollHeight &&
-      currentNext != null
-    ) {
+    let isScrolledToBottom =
+      window.innerHeight + window.scrollY + 1 >= document.body.offsetHeight;
+    if (isScrolledToBottom && currentNext != null) {
       setIsLoading(true);
     }
   };
@@ -78,7 +76,7 @@ const GameCardGrid = ({ params = {} }: Props) => {
 
       <div
         className={
-          " m-auto inline-flex flex-wrap sm:flex-row flex-col sm:w-auto w-3/4 gap-10 items-center justify-center md:justify-evenly  text-white " +
+          " m-auto flex flex-wrap sm:flex-row flex-col sm:w-auto w-3/4 gap-10 items-center justify-center md:justify-evenly  text-white " +
           (currentGameData.length !== 0 ? "" : "hidden")
         }
       >
@@ -97,7 +95,7 @@ const GameCardGrid = ({ params = {} }: Props) => {
       </div>
       <div
         className={
-          " m-auto mt-4 inline-flex flex-wrap sm:flex-row flex-col md:w-auto w-3/4 gap-10 items-center justify-center md:justify-evenly  text-white " +
+          " m-auto mt-4 flex flex-wrap sm:flex-row flex-col md:w-auto w-3/4 gap-10 items-center justify-center md:justify-evenly  text-white " +
           (gamesData !== null || error !== "" ? "hidden" : "")
         }
       >

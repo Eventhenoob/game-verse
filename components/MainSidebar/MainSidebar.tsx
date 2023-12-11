@@ -1,6 +1,15 @@
 "use client";
 import Link from "next/link";
-import { MdBookmarkAdd, MdLibraryAdd } from "react-icons/md";
+import { LuSwords } from "react-icons/lu";
+import { MdBookmarkAdd, MdOutlineStore, MdLibraryAdd } from "react-icons/md";
+import { GiFlatPlatform, GiStarfighter } from "react-icons/gi";
+import { SiGradleplaypublisher } from "react-icons/si";
+import {
+  RiComputerFill,
+  RiXboxLine,
+  RiPlaystationFill,
+  RiBrainLine,
+} from "react-icons/ri";
 interface Props {
   className: string;
 }
@@ -76,7 +85,7 @@ const MainSidebar = ({ className }: Props) => {
             className="hover:text-main-color group   transition-all duration-300 flex items-center gap-4 text-white"
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdBookmarkAdd className="" />
+              <GiFlatPlatform className="" />
             </div>
             Platforms
           </Link>
@@ -87,7 +96,7 @@ const MainSidebar = ({ className }: Props) => {
             className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 text-white"
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdLibraryAdd />
+              <MdOutlineStore />
             </div>
             Stores
           </Link>
@@ -98,7 +107,7 @@ const MainSidebar = ({ className }: Props) => {
             className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 "
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdBookmarkAdd className="" />
+              <SiGradleplaypublisher className="" />
             </div>
             Publishers
           </Link>
@@ -119,7 +128,7 @@ const MainSidebar = ({ className }: Props) => {
             className="hover:text-main-color group   transition-all duration-300 flex items-center gap-4 text-white"
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdBookmarkAdd className="" />
+              <RiComputerFill className="" />
             </div>
             PC
           </Link>
@@ -130,7 +139,7 @@ const MainSidebar = ({ className }: Props) => {
             className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 text-white"
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdLibraryAdd />
+              <RiPlaystationFill />
             </div>
             PlayStation 4
           </Link>
@@ -141,7 +150,7 @@ const MainSidebar = ({ className }: Props) => {
             className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 "
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdBookmarkAdd className="" />
+              <RiXboxLine className="" />
             </div>
             Xbox One
           </Link>
@@ -156,24 +165,14 @@ const MainSidebar = ({ className }: Props) => {
             Genres
           </Link>
         </li>
-        <li className="">
-          <Link
-            href={"/"}
-            className="hover:text-main-color group   transition-all duration-300 flex items-center gap-4 text-white"
-          >
-            <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdBookmarkAdd className="" />
-            </div>
-            PC
-          </Link>
-        </li>
+
         <li className="">
           <Link
             href={"/"}
             className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 text-white"
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdLibraryAdd />
+              <GiStarfighter />
             </div>
             Action
           </Link>
@@ -184,7 +183,7 @@ const MainSidebar = ({ className }: Props) => {
             className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 "
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdBookmarkAdd className="" />
+              <RiBrainLine className="" />
             </div>
             Strategy
           </Link>
@@ -195,7 +194,7 @@ const MainSidebar = ({ className }: Props) => {
             className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 "
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdBookmarkAdd className="" />
+              <LuSwords className="" />
             </div>
             RPG
           </Link>

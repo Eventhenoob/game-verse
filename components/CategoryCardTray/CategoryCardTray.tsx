@@ -49,11 +49,9 @@ const CategoryCardTray = ({
   }, [isLoading]);
 
   const setLoadingTrue = () => {
-    if (
-      window.innerWidth + document.documentElement.scrollTop >=
-        document.documentElement.scrollHeight &&
-      currentNext != null
-    ) {
+    let isScrolledToBottom =
+      window.innerHeight + window.scrollY + 1 >= document.body.offsetHeight;
+    if (isScrolledToBottom && currentNext != null) {
       setIsLoading(true);
     }
   };
