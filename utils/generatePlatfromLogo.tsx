@@ -7,7 +7,7 @@ import { IoLogoApple } from "react-icons/io5";
 
 const mapIcons = (platfrom: string) => {
   if (platfrom.toLowerCase() === "linux") return <LiaLinux />;
-  if (platfrom.toLowerCase() === "windows") return <IoLogoWindows />;
+  if (platfrom.toLowerCase() === "pc") return <IoLogoWindows />;
   if (platfrom.toLowerCase() === "xbox") return <LiaXbox />;
   if (platfrom.toLowerCase() === "nintendo") return <SiNintendoswitch />;
   if (platfrom.toLowerCase() === "playstation") return <SiPlaystation />;

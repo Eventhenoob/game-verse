@@ -105,7 +105,7 @@ const CategoryCardTray = ({
         <CategoryCardSkeleton />
       </div>
       <ApiErrorHandler
-        isNextNull={currentNext !== null}
+        isNextNull={currentNext === null}
         error={error}
         retry={retry}
       />

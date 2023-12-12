@@ -12,7 +12,7 @@ export interface GameDataType {
   rating: number;
   released: string;
   background_image: string;
-  parent_platforms: { platform: Platform }[];
+  parent_platforms: { platform: Platform }[] | undefined;
 }
 
 const GameCard = ({
@@ -47,9 +47,10 @@ const GameCard = ({
           <li className="flex justify-between  border-opacity-25 pb-2 pt-2">
             Platforms:{" "}
             <span className="text-main-color inline-flex gap-2 font-retro">
-              {generatePlatfromLogo(
-                parent_platforms.map((platform) => platform.platform.name)
-              )}
+              {parent_platforms &&
+                generatePlatfromLogo(
+                  parent_platforms.map((platform) => platform.platform.name)
+                )}
             </span>
           </li>
         </ul>

@@ -1,5 +1,4 @@
-import React from "react";
-
+"use client";
 interface Props {
   isNextNull: boolean;
   error: string;
@@ -9,7 +8,8 @@ const ApiErrorHandler = ({ isNextNull, error, retry }: Props) => {
   return (
     <div
       className={
-        "text-center " + (error === "" || isNextNull == false ? "hidden" : "")
+        "text-center " +
+        (error != "" || isNextNull == false ? "  " : " hidden ")
       }
     >
       <p className="text-white">{error}</p>

@@ -1,11 +1,5 @@
 "use client";
-import { GameDataType } from "@/components/GameCard/GameCard";
 import GameCardGrid from "@/components/GameCardGrid";
-
-interface FetchedGamesResponse {
-  count: number;
-  results: GameDataType[];
-}
 
 export default function Games() {
   return (

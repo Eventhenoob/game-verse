@@ -14,7 +14,7 @@ interface Props {
 const GameCardGrid = ({ params = {} }: Props) => {
   const [currentOrder, setCurrentOrder] = useState("-ratings");
   const [pageCounter, setPageCounter] = useState(1);
-  const [currentNext, setCurrentNext] = useState<string | null>("");
+  const [currentNext, setCurrentNext] = useState<string | null>("temp");
   const [currentGameData, setCurrentGameData] = useState<GameDataType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -110,7 +110,7 @@ const GameCardGrid = ({ params = {} }: Props) => {
         <GameCardSekeleton />
       </div>
       <ApiErrorHandler
-        isNextNull={currentNext !== null}
+        isNextNull={currentNext === null}
         error={error}
         retry={retry}
       />
