@@ -56,3 +56,11 @@ html::-webkit-scrollbar {
 h3 {
   @apply text-2xl;
 }
+
+input {
+  filter: none;
+}
+
+input:autofill {
+  background: #314664;
+}

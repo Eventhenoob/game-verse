@@ -6,12 +6,14 @@ import { LiaXbox } from "react-icons/lia";
 import { IoLogoApple } from "react-icons/io5";
 
 const mapIcons = (platfrom: string) => {
-  if (platfrom.toLowerCase() === "linux") return <LiaLinux />;
-  if (platfrom.toLowerCase() === "pc") return <IoLogoWindows />;
-  if (platfrom.toLowerCase() === "xbox") return <LiaXbox />;
-  if (platfrom.toLowerCase() === "nintendo") return <SiNintendoswitch />;
-  if (platfrom.toLowerCase() === "playstation") return <SiPlaystation />;
-  if (platfrom.toLowerCase() === "macos") return <IoLogoApple />;
+  if (platfrom.toLowerCase() === "linux") return <LiaLinux key={"linux"} />;
+  if (platfrom.toLowerCase() === "pc") return <IoLogoWindows key={"pc"} />;
+  if (platfrom.toLowerCase() === "xbox") return <LiaXbox key={"xbox"} />;
+  if (platfrom.toLowerCase() === "nintendo")
+    return <SiNintendoswitch key={"nintendo"} />;
+  if (platfrom.toLowerCase() === "playstation")
+    return <SiPlaystation key={"playstation"} />;
+  if (platfrom.toLowerCase() === "macos") return <IoLogoApple key={"macos"} />;
 };
 
 export default (platformNames: string[]) => {
