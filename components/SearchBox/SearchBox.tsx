@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 const SearchBox = () => {
   const router = useRouter();
   const [mobileSearch, setMobileSearch] = useState(false);
-  const [isActiveMobile, setIsActiveMobile] = useState(false);
+
   const [isActive, setIsActive] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const { error, gameNameData, retry } = useGameNames();
@@ -21,6 +21,7 @@ const SearchBox = () => {
   const toggleMobileSearch = () => {
     setMobileSearch((prev) => !prev);
   };
+
   useEffect(() => {
     const items: string[] = [];
     const clearArrayTimer: number | null = null;
@@ -69,10 +70,7 @@ const SearchBox = () => {
           setIsActive(true);
         }}
         onMouseLeave={() => {
-          if (
-            !(document.activeElement === inputRef.current) &&
-            inputRef.current?.value == ""
-          ) {
+          if (!(document.activeElement === inputRef.current)) {
             setIsActive(false);
           }
         }}
@@ -99,7 +97,7 @@ const SearchBox = () => {
           }}
           onFocus={() => setIsActive(true)}
           onBlur={(e) => {
-            if (e.target.value == "") setIsActive(false);
+            setIsActive(false);
           }}
           ref={inputRef}
           type="text"
@@ -156,7 +154,7 @@ const SearchBox = () => {
       <div
         className={
           "bg-gray-800 text-slate-300 absolute top-[8.5rem] md:top-[90px] rounded-lg left-[50%] -translate-x-[50%] gap-3  md:w-[70%] w-[90vw] m-auto h-96 p-5 flex flex-col transition-all duration-500 overflow-y-scroll overflow-x-hidden removeScroll " +
-          (isActive || (isActiveMobile && inputRef.current?.value != "")
+          (isActive && inputRef.current?.value != ""
             ? " visible opacity-100 "
             : " invisible opacity-0 ")
         }
