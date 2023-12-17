@@ -1,11 +1,9 @@
 "use client";
 import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Lottie from "lottie-react";
 import LoginAnimation from "@/assets/LoginAnimation.json";
-
-// min-h-screen flex flex-col-reverse items-center justify-center mt-10 lg:mt-0 lg:flex-col   lg:p-40 lg:pt-10 pb-40
 
 const page = () => {
   const [email, setEmail] = useState("");
@@ -46,7 +44,7 @@ const page = () => {
               Login successfully
             </p>
           )}
-          {error && (
+          {error && !loginSuccess && (
             <p className="bg-red-600 p-4 fixed w-screen top-20 left-1 z-30 text-black font-heading ">
               {error}
             </p>
@@ -104,7 +102,7 @@ const page = () => {
               Forgot Password?
             </a>
             <a
-              href="/auth/signup"
+              href="/signup"
               className="text-gray-400 hover:text-slate-300 transition-color duration-200  mt-2 text-sm"
             >
               Create new account

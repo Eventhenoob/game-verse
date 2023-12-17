@@ -10,11 +10,13 @@ import {
   RiPlaystationFill,
   RiBrainLine,
 } from "react-icons/ri";
+import { useSession } from "next-auth/react";
 interface Props {
   className: string;
 }
 
 const MainSidebar = ({ className }: Props) => {
+  const { data } = useSession();
   return (
     <aside
       className={
@@ -36,7 +38,11 @@ const MainSidebar = ({ className }: Props) => {
             className="text-3xl hover:text-main-color transition-all duration-300 flex items-center gap-4 text-white"
           >
             Profile
-            <div className="w-9 h-9 bg-green-500 rounded-full"> </div>
+            {data && (
+              <div className="w-9 h-9 overflow-hidden bg-green-500 rounded-full">
+                <img src={`avator${data.user?.image}.png`} alt="" />
+              </div>
+            )}
           </Link>
         </li>
         <li className="">

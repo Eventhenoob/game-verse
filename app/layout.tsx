@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
+"use client";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import MainSidebar from "@/components/MainSidebar";
-
-export const metadata: Metadata = {
-  title: "Game Verse",
-  description: "Unite and Showcase Your Gaming Universe.",
-};
+import AuthProvider from "@/components/AuthProvider";
 
 export default function RootLayout({
   children,
@@ -19,11 +15,13 @@ export default function RootLayout({
         <link rel="icon" href="./favicon.ico" sizes="any" />
       </head>
       <body className="overflow-x-hidden dark:bg-dark-color min-h-screen grid grid-cols-5 grid-rows-layout">
-        <header className="w-full  col-span-full mb-20">
-          <Navigation />
-        </header>
-        <MainSidebar className=" fixed hidden md:flex w-1/5 text-white" />
-        {children}
+        <AuthProvider>
+          <header className="w-full  col-span-full mb-20">
+            <Navigation />
+          </header>
+          <MainSidebar className=" fixed hidden lg:flex w-1/5 text-white" />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

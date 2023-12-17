@@ -26,7 +26,7 @@ const GameCard = ({
   return (
     <Link
       href={`/game/${id}`}
-      className="p-0 overflow-hidden hover:scale-110 transition-all duration-200 shadow-2xl cursor-pointer active:scale-105 rounded-xl w-full sm:w-72 shrink-0 bg-zinc-900"
+      className="p-0 overflow-hidden hover:scale-110 transition-all duration-200 shadow-2xl cursor-pointer active:scale-105 rounded-xl w-full sm:w-72 md:w-64 lg:w-72 shrink-0 bg-zinc-900"
     >
       <img
         alt={name}

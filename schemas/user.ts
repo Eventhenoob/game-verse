@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import validator from "validator";
 
-export default new mongoose.Schema({
-  username: { type: String, required: true },
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true },
   password: { type: String, required: true },
   email: {
     type: String,
@@ -11,5 +11,8 @@ export default new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, "Please provide a valid email"],
   },
-  avator: { type: Number, required: true },
+  image: { type: Number, required: true },
+  wishlist: { type: [Number], default: [] }, // Array of numbers for wishlist
 });
+
+export default userSchema;

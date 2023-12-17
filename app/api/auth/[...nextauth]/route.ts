@@ -1,5 +1,5 @@
 import NextAuth from "next-auth/next";
-import { AuthOptions } from "next-auth";
+import { AuthOptions, User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { closeDataBase, connectTo } from "@/services/connectDB";
 import userModel from "@/models/userModel";
@@ -24,7 +24,7 @@ export const authOptions: AuthOptions = {
         },
       },
 
-      async authorize(credentials, req) {
+      async authorize(credentials, req): Promise<User | null> {
         if (!credentials || !credentials.email || !credentials.password)
           return null;
 

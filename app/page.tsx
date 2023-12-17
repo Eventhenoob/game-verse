@@ -1,13 +1,5 @@
 "use client";
-import MainSidebar from "@/components/MainSidebar";
-import Navigation from "@/components/Navigation";
-import { GameDataType } from "@/components/GameCard/GameCard";
 import GameCardGrid from "@/components/GameCardGrid";
-
-interface FetchedGamesResponse {
-  count: number;
-  results: GameDataType[];
-}
 
 export default function Home() {
   return (
