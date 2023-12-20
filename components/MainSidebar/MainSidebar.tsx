@@ -34,37 +34,26 @@ const MainSidebar = ({ className }: Props) => {
       <ul className="flex flex-col gap-1">
         <li>
           <Link
-            href={"/"}
+            href={"/profile"}
             className="text-3xl hover:text-main-color transition-all duration-300 flex items-center gap-4 text-white"
           >
             Profile
             {data && (
               <div className="w-9 h-9 overflow-hidden bg-green-500 rounded-full">
-                <img src={`avator${data.user?.image}.png`} alt="" />
+                <img src={`/avator${data.user?.image}.png`} alt="" />
               </div>
             )}
           </Link>
         </li>
         <li className="">
           <Link
-            href={"/"}
+            href={"/profile/wishlist"}
             className="hover:text-main-color group   transition-all duration-300 flex items-center gap-4 text-white"
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
               <MdBookmarkAdd className="" />
             </div>
             Wishlist
-          </Link>
-        </li>
-        <li className="">
-          <Link
-            href={"/"}
-            className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 text-white"
-          >
-            <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
-              <MdLibraryAdd />
-            </div>
-            My Library
           </Link>
         </li>
       </ul>

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { closeDataBase, connectTo } from "@/services/connectDB";
+import { connectTo } from "@/services/connectDB";
 import userModel from "@/models/userModel";
 import { compare } from "@/utils/crypto";
 

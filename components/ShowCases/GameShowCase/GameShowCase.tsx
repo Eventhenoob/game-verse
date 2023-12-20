@@ -47,7 +47,12 @@ const GameShowCase = ({ gameId }: { gameId: number }) => {
   // }, [gameData]);
   return (
     <>
-      <ApiErrorHandler error={error} retry={retry} />;
+      <ApiErrorHandler
+        error={error}
+        retry={retry}
+        isNextNull={!(error == "")}
+      />
+
       <div
         className={
           "flex flex-col w-10/12 m-auto gap-4 " +

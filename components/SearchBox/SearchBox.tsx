@@ -92,7 +92,6 @@ const SearchBox = () => {
 
         <input
           onChange={(e) => {
-            console.log(inputRef.current?.value);
             getNewData(e.target.value);
           }}
           onFocus={() => setIsActive(true)}

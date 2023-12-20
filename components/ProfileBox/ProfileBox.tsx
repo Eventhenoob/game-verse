@@ -1,6 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 interface userData {
   name: string;
@@ -26,21 +27,17 @@ const ProfileBox = () => {
         image: data.user?.image,
       });
     } else setUserData(null);
-
-    console.log(data);
   }, [data]);
 
   return (
     <>
       {userData != null ? (
-        <div
-          onClick={() => {
-            signOut();
-          }}
-          className="cursor-pointer bg-green-500 overflow-hidden w-8 h-8 ml-3 sm:ml-0 sm:w-10 sm:h-10 shrink-0 rounded-full"
+        <Link
+          href={"/profile"}
+          className="cursor-pointer overflow-hidden w-8 h-8 ml-3 sm:ml-0 sm:w-10 sm:h-10 shrink-0 rounded-full border-[2px] border-transparent hover:border-main-color active:border-main-color focus:border-main-color"
         >
-          {<img src={`avator${data?.user?.image}.png`} alt="user image" />}
-        </div>
+          {<img src={`/avator${data?.user?.image}.png`} alt="user image" />}
+        </Link>
       ) : (
         <button
           className="shrink-0 bg-main-color hover:bg-yellow-300 transition-all lg:block hidden duration-200 font-retro  p-[2px] pl-[8px] pr-[8px]"

@@ -1,7 +1,7 @@
 import NextAuth from "next-auth/next";
 import { AuthOptions, User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { closeDataBase, connectTo } from "@/services/connectDB";
+import { connectTo } from "@/services/connectDB";
 import userModel from "@/models/userModel";
 import { compare } from "@/utils/crypto";
 
@@ -34,8 +34,6 @@ export const authOptions: AuthOptions = {
           const foundUser = await userModel.findOne({
             email: credentials.email,
           });
-
-          closeDataBase();
 
           if (
             foundUser &&

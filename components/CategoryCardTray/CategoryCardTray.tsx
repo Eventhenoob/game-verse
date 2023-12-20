@@ -30,7 +30,6 @@ const CategoryCardTray = ({
 
   const updateCategoryData = () => {
     if (categoryData && currentNext != next) {
-      console.log("data updating");
       setCurrentCategoryData((prev) => [...prev, ...categoryData]);
       setCurrentNext(next);
       setIsLoading(false);

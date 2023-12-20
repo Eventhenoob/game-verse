@@ -26,7 +26,6 @@ const GameCardGrid = ({ params = {} }: Props) => {
 
   const updateGameData = () => {
     if (gamesData && currentNext != next) {
-      console.log("data updating");
       setCurrentGameData((prev) => [...prev, ...gamesData]);
       setCurrentNext(next);
       setIsLoading(false);
