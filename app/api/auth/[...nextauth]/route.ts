@@ -1,7 +1,7 @@
 import NextAuth from "next-auth/next";
 import { AuthOptions, User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { connectTo } from "@/services/connectDB";
+import { connectTo, closeDataBase } from "@/services/connectDB";
 import userModel from "@/models/userModel";
 import { compare } from "@/utils/crypto";
 

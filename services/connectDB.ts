@@ -1,16 +1,15 @@
 import mongoose from "mongoose";
 
-// const dbLink = process.env.dbLink?.replaceAll(
-//   "<password>",
-//   process.env.dbPassword || ""
-// );
+const dbLink = process.env.dbLink;
 
 export async function connect() {
-  return await mongoose.connect("mongodb://127.0.0.1:27017");
+  if (mongoose.connection.readyState === 0)
+    return await mongoose.connect(`${dbLink}`);
 }
 
 export async function connectTo(to: string) {
-  return await mongoose.connect(`mongodb://127.0.0.1:27017/${to}`);
+  if (mongoose.connection.readyState === 0)
+    return await mongoose.connect(`${dbLink}/${to}`);
 }
 
 export function closeDataBase() {
