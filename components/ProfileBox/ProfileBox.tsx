@@ -10,7 +10,7 @@ interface userData {
 }
 
 const ProfileBox = () => {
-  const { data, update } = useSession();
+  const { data, status } = useSession();
   const [userData, setUserData] = useState<userData | null>(null);
 
   useEffect(() => {
@@ -31,14 +31,15 @@ const ProfileBox = () => {
 
   return (
     <>
-      {userData != null ? (
+      {status === "authenticated" && (
         <Link
           href={"/profile"}
           className="cursor-pointer overflow-hidden w-8 h-8 ml-3 sm:ml-0 sm:w-10 sm:h-10 shrink-0 rounded-full border-[2px] border-transparent hover:border-main-color active:border-main-color focus:border-main-color"
         >
           {<img src={`/avator${data?.user?.image}.png`} alt="user image" />}
         </Link>
-      ) : (
+      )}
+      {status === "unauthenticated" && (
         <button
           className="shrink-0 bg-main-color hover:bg-yellow-300 transition-all lg:block hidden duration-200 font-retro  p-[2px] pl-[8px] pr-[8px]"
           onClick={() => signIn()}

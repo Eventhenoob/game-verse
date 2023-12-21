@@ -58,3 +58,57 @@ export async function POST(req: Request) {
     );
   }
 }
+
+export async function PATCH(req: Request) {
+  try {
+    const body = await req.json();
+
+    if (!body.userEmail) {
+      return NextResponse.json(
+        {
+          error: "Bad Request",
+          message: "Invalid Information Provided",
+        },
+        { status: 400 }
+      );
+    }
+
+    connectTo("user");
+    const foundUser = await userModel.findOne({ email: body.userEmail });
+    if (!foundUser) {
+      return NextResponse.json(
+        {
+          error: "No user found",
+          message: "There is no user with this email",
+        },
+        { status: 409 }
+      );
+    }
+    if (body.email) foundUser.email = body.email;
+    if (body.name) foundUser.name = body.name;
+    if (body.avator) foundUser.image = +body.avator;
+    if (body.newPassword && body.oldPassword) {
+      if (await compare(body.oldPassword, foundUser.password))
+        foundUser.password = body.newPassword;
+      else
+        return NextResponse.json(
+          {
+            error: "Bad Request",
+            message: "Old Password is wrong.",
+          },
+          { status: 400 }
+        );
+    }
+
+    foundUser.save();
+    return NextResponse.json(foundUser, { status: 200 });
+  } catch (e) {
+    return NextResponse.json(
+      {
+        error: "Internal Server Error",
+        message: "An error occurred while processing the request",
+      },
+      { status: 500 }
+    );
+  }
+}

@@ -6,7 +6,7 @@ import Image from "next/image";
 import ProfileBox from "../ProfileBox";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { LuHeartHandshake } from "react-icons/lu";
-import { LuLibrary } from "react-icons/lu";
+import { CgProfile } from "react-icons/cg";
 import { MdCalendarViewDay, MdBookmarkAdd } from "react-icons/md";
 
 import { BsCollectionFill } from "react-icons/bs";
@@ -74,28 +74,18 @@ const Navigation = () => {
         <li className="w-full pl-6 ">
           <Link
             onClick={() => setIsMobileNavActive(false)}
-            href={"/"}
+            href={"/profile"}
             className="text-center inline-flex gap-2 items-center border-b-[1px] hover:active:text-main-color border-slate-300 border-opacity-20"
           >
-            <LuLibrary />
-            Library
-          </Link>
-        </li>
-        <li className="w-full pl-6 ">
-          <Link
-            onClick={() => setIsMobileNavActive(false)}
-            href={"/"}
-            className="text-center inline-flex gap-2 items-center border-b-[1px] hover:active:text-main-color border-slate-300 border-opacity-20"
-          >
-            <MdCalendarViewDay />
-            Overview
+            <CgProfile />
+            Profile
           </Link>
         </li>
 
         <li className="w-full pl-6 ">
           <Link
             onClick={() => setIsMobileNavActive(false)}
-            href={"/wishlist"}
+            href={"/profile/wishlist"}
             className="text-center inline-flex gap-2 items-center border-b-[1px] hover:active:text-main-color border-slate-300 border-opacity-20"
           >
             <MdBookmarkAdd />
@@ -104,7 +94,7 @@ const Navigation = () => {
         </li>
 
         <li className="w-full pl-6 ">
-          {status === "authenticated" ? (
+          {status === "authenticated" && (
             <button
               onClick={() => {
                 signOut({ callbackUrl: "/", redirect: true });
@@ -115,7 +105,9 @@ const Navigation = () => {
               <IoLogOutSharp />
               sign out
             </button>
-          ) : (
+          )}
+
+          {status === "unauthenticated" && (
             <button
               onClick={() => {
                 signIn();

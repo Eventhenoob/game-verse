@@ -9,6 +9,8 @@ import generatePlatfromLogo from "@/utils/generatePlatfromLogo";
 import GameImageShowCase from "@/components/GameImageShowCase";
 import Link from "next/link";
 import DeveloperList from "@/components/DeveloperList";
+import AddToWishlistButton from "@/components/AddToWishlistButton";
+import { useWishlist } from "@/context/WishlistProvider/WishlistProvider";
 
 interface platform {
   name: string;
@@ -41,17 +43,11 @@ export interface gameData {
 
 const GameShowCase = ({ gameId }: { gameId: number }) => {
   const { error, gameData, retry } = useGame(gameId);
-  // useEffect(() => {
-  //   console.log(gameData);
-  //   console.log(gameData?.platforms.map((item) => item.platform.name));
-  // }, [gameData]);
+  const { add, remove, wishlist } = useWishlist();
+
   return (
     <>
-      <ApiErrorHandler
-        error={error}
-        retry={retry}
-        isNextNull={!(error == "")}
-      />
+      <ApiErrorHandler error={error} retry={retry} isNextNull={error == ""} />
 
       <div
         className={
@@ -90,10 +86,18 @@ const GameShowCase = ({ gameId }: { gameId: number }) => {
               </span>
             </p>
           </div>
-          <div className="">
-            <h1 className=" font-heading text-4xl md:text-6xl ">
+          <div className="relative ">
+            <h1 className="  font-heading text-4xl md:text-6xl ">
               {gameData.name}
             </h1>
+            <AddToWishlistButton
+              add={add}
+              size="lg"
+              isTrans={true}
+              remove={remove}
+              gameId={gameId}
+              isAdded={wishlist.includes(gameId)}
+            />
           </div>
           {parse(gameData.description)}
           <div className="flex md:flex-row flex-col justify-evenly ">

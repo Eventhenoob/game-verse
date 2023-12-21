@@ -12,7 +12,12 @@ const WishlistTray = ({ round = false }: { round?: boolean }) => {
   } = useWishlist();
 
   return (
-    <div className={"flex gap-10 " + (round ? " flex-wrap " : " ")}>
+    <div
+      className={
+        "m-auto flex flex-wrap sm:flex-row flex-col sm:w-auto w-3/4 sm:gap-10 md:gap-7 lg:gap-14  gap-14 items-center justify-center md:justify-between  text-white " +
+        (round ? " flex-wrap " : " flex-nowrap ")
+      }
+    >
       {round
         ? wishlist.map((id) => <GameCardById key={id} gameId={id} />)
         : wishlist

@@ -3,6 +3,7 @@ import generatePlatfromLogo from "@/utils/generatePlatfromLogo";
 import Link from "next/link";
 import AddToWishlistButton from "../AddToWishlistButton";
 import { useWishlist } from "@/context/WishlistProvider/WishlistProvider";
+import { useSession } from "next-auth/react";
 
 interface Platform {
   id: number;
@@ -26,6 +27,7 @@ const GameCard = ({
   background_image,
   parent_platforms,
 }: GameDataType) => {
+  const { status } = useSession();
   const { add, remove, wishlist } = useWishlist();
   return (
     <div className="p-0 overflow-hidden relative hover:scale-110 transition-all duration-200 shadow-2xl cursor-pointer rounded-xl w-full sm:w-72 md:w-64 lg:w-72 shrink-0 bg-zinc-900">
@@ -34,13 +36,14 @@ const GameCard = ({
         src={background_image}
         className="10rem 100% rounded-xl object-fill"
       />
-
-      <AddToWishlistButton
-        add={add}
-        gameId={+id}
-        isAdded={wishlist.includes(+id)}
-        remove={remove}
-      />
+      {status === "authenticated" && (
+        <AddToWishlistButton
+          add={add}
+          gameId={+id}
+          isAdded={wishlist.includes(+id)}
+          remove={remove}
+        />
+      )}
 
       <Link
         href={`/game/${id}`}
