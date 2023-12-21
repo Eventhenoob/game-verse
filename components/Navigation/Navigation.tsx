@@ -7,7 +7,8 @@ import ProfileBox from "../ProfileBox";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { LuHeartHandshake } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
-import { MdCalendarViewDay, MdBookmarkAdd } from "react-icons/md";
+import { MdBookmarkAdd } from "react-icons/md";
+import { GrList } from "react-icons/gr";
 
 import { BsCollectionFill } from "react-icons/bs";
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -61,6 +62,16 @@ const Navigation = () => {
           (isMobNavActive ? " -translate-x-0" : " -translate-x-full")
         }
       >
+        <li className="w-full pl-6 ">
+          <Link
+            onClick={() => setIsMobileNavActive(false)}
+            href={"/games"}
+            className="text-center inline-flex gap-2 items-center border-b-[1px] hover:active:text-main-color border-slate-300 border-opacity-20"
+          >
+            <GrList />
+            All Games
+          </Link>
+        </li>
         <li className="w-full pl-6 ">
           <Link
             onClick={() => setIsMobileNavActive(false)}

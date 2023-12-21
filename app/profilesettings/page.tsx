@@ -1,12 +1,14 @@
 "use client";
 
 import ErrorSuccessNotifier from "@/components/ErrorSuccessNotifier";
+import LoginMessage from "@/components/LoginMessage";
+import GameShowCaseSkeleton from "@/components/ShowCases/GameShowCase/GameShowCaseSkeleton";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
 
 const page = () => {
-  const { data, update } = useSession();
+  const { data, update, status } = useSession();
 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -129,217 +131,230 @@ const page = () => {
     }
   }, [data]);
 
-  return (
-    <main className="mainStylesDefault p-4 relative text-white">
-      <ErrorSuccessNotifier
-        color="red"
-        message={error}
-        showMessage={showErrorMessage}
-      />
+  if (status === "authenticated")
+    return (
+      <main className="mainStylesDefault p-4 relative text-white">
+        <ErrorSuccessNotifier
+          color="red"
+          message={error}
+          showMessage={showErrorMessage}
+        />
 
-      <ErrorSuccessNotifier
-        color="green"
-        message={"Profile Updated Successfully"}
-        showMessage={showSuccessMessage}
-      />
-      <h1 className="font-heading text-4xl mb-10">Settings</h1>
+        <ErrorSuccessNotifier
+          color="green"
+          message={"Profile Updated Successfully"}
+          showMessage={showSuccessMessage}
+        />
+        <h1 className="font-heading text-4xl mb-10">Settings</h1>
 
-      <ul className="flex gap-4  font-heading">
-        <li className="">
-          <button
-            className={"" + (currentForm === 0 && " border-b-2")}
-            onClick={() => setCurrentForm(0)}
+        <ul className="flex gap-4  font-heading">
+          <li className="">
+            <button
+              className={"" + (currentForm === 0 && " border-b-2")}
+              onClick={() => setCurrentForm(0)}
+            >
+              Profile
+            </button>
+          </li>
+          <li className="">
+            <button
+              className={"" + (currentForm === 1 && " border-b-2")}
+              onClick={() => setCurrentForm(1)}
+            >
+              Password
+            </button>
+          </li>
+          <li className={"" + (currentForm === 2 && " border-b-2")}>
+            <button className="" onClick={() => setCurrentForm(2)}>
+              Email
+            </button>
+          </li>
+        </ul>
+
+        <div className="formContainer mt-10 pt-10 pb-10 md:p-10 p-4 rounded-xl bg-slate-800   md:w-3/3 lg:w-4/5 md:min-h-1/2">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleProflieSubmit();
+            }}
+            className={" md:w-max " + (currentForm === 0 ? "" : " hidden ")}
           >
-            Profile
-          </button>
-        </li>
-        <li className="">
-          <button
-            className={"" + (currentForm === 1 && " border-b-2")}
-            onClick={() => setCurrentForm(1)}
-          >
-            Password
-          </button>
-        </li>
-        <li className={"" + (currentForm === 2 && " border-b-2")}>
-          <button className="" onClick={() => setCurrentForm(2)}>
-            Email
-          </button>
-        </li>
-      </ul>
+            <div className="mb-4">
+              <label htmlFor="" className="font-heading text-slate-300">
+                Avator <span className="text-red-600">*</span>
+              </label>
+              <div className="flex gap-2 removeScroll overflow-x-scroll overflow-y-hidden  items-center">
+                <img
+                  onClick={() => setNewAvator(1)}
+                  src="/avator1.png"
+                  className={
+                    "w-32 cursor-pointer rounded-md h-auto shrink-0 " +
+                    (newAvator === 1 ? " border-[3px] border-main-color " : " ")
+                  }
+                  alt="avator1"
+                />
+                <img
+                  onClick={() => setNewAvator(2)}
+                  src="/avator2.png"
+                  alt="avator2"
+                  className={
+                    "w-32 h-auto shrink-0 cursor-pointer rounded-md " +
+                    (newAvator === 2 ? " border-[3px] border-main-color " : " ")
+                  }
+                />
+                <img
+                  onClick={() => setNewAvator(3)}
+                  className={
+                    "w-32 h-auto shrink-0 cursor-pointer rounded-md " +
+                    (newAvator === 3 ? " border-[3px] border-main-color " : " ")
+                  }
+                  src="/avator3.png"
+                  alt="avator3"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col w-full">
+              <label htmlFor="userName" className="font-heading text-slate-300">
+                UserName <span className="text-red-600">*</span>
+              </label>
 
-      <div className="formContainer mt-10 pt-10 pb-10 md:p-10 p-4 rounded-xl bg-slate-800   md:w-3/3 lg:w-4/5 md:min-h-1/2">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleProflieSubmit();
-          }}
-          className={" md:w-max " + (currentForm === 0 ? "" : " hidden ")}
-        >
-          <div className="mb-4">
-            <label htmlFor="" className="font-heading text-slate-300">
-              Avator <span className="text-red-600">*</span>
-            </label>
-            <div className="flex gap-2 removeScroll overflow-x-scroll overflow-y-hidden  items-center">
-              <img
-                onClick={() => setNewAvator(1)}
-                src="/avator1.png"
+              <input
+                id="userName"
                 className={
-                  "w-32 cursor-pointer rounded-md h-auto shrink-0 " +
-                  (newAvator === 1 ? " border-[3px] border-main-color " : " ")
+                  "p-2 rounded-md  mt-2 focus:border-main-color border-b-4 w-full md:w-auto outline-none bg-gray-700 " +
+                  (currentName.current == newName &&
+                    " border-red-500 focus:border-red-500")
                 }
-                alt="avator1"
-              />
-              <img
-                onClick={() => setNewAvator(2)}
-                src="/avator2.png"
-                alt="avator2"
-                className={
-                  "w-32 h-auto shrink-0 cursor-pointer rounded-md " +
-                  (newAvator === 2 ? " border-[3px] border-main-color " : " ")
-                }
-              />
-              <img
-                onClick={() => setNewAvator(3)}
-                className={
-                  "w-32 h-auto shrink-0 cursor-pointer rounded-md " +
-                  (newAvator === 3 ? " border-[3px] border-main-color " : " ")
-                }
-                src="/avator3.png"
-                alt="avator3"
+                type="text"
+                value={newName}
+                onChange={(e) => setNewName(e.target.value)}
               />
             </div>
-          </div>
-          <div className="flex flex-col w-full">
-            <label htmlFor="userName" className="font-heading text-slate-300">
-              UserName <span className="text-red-600">*</span>
-            </label>
 
-            <input
-              id="userName"
-              className={
-                "p-2 rounded-md  mt-2 focus:border-main-color border-b-4 w-full md:w-auto outline-none bg-gray-700 " +
-                (currentName.current == newName &&
-                  " border-red-500 focus:border-red-500")
-              }
-              type="text"
-              value={newName}
-              onChange={(e) => setNewName(e.target.value)}
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="p-2 pl-4 pr-4 rounded-lg mt-4 bg-main-color hover:bg-yellow-500 transition-all duration-200"
-          >
-            Submit
-          </button>
-        </form>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handlePasswordSubmit();
-          }}
-          className={"md:w-[50%] " + (currentForm === 1 ? "" : "hidden")}
-        >
-          <div className="flex w-full md:w-auto flex-col mb-4">
-            <label htmlFor="" className="font-heading text-slate-300">
-              New Password <span className="text-red-600">*</span>
-            </label>
-            <input
-              className={
-                "p-2 rounded-md  mt-2 focus:border-main-color border-b-4 w-full md:w-auto outline-none bg-gray-700"
-              }
-              required={true}
-              min={8}
-              type="password"
-              id="password"
-              onChange={(e) => setNewPassword(e.target.value)}
-              value={newPassword}
-            />
-          </div>
-
-          <div className="flex w-full md:w-auto flex-col mb-4">
-            <label
-              htmlFor="confirmPassword"
-              className="font-heading text-slate-300"
+            <button
+              type="submit"
+              className="p-2 pl-4 pr-4 rounded-lg mt-4 bg-main-color hover:bg-yellow-500 transition-all duration-200"
             >
-              Confirm Password <span className="text-red-600">*</span>
-            </label>
-            <input
-              className={
-                "p-2 rounded-md  mt-2 focus:border-main-color border-b-4 w-full md:w-auto outline-none bg-gray-700"
-              }
-              required={true}
-              min={8}
-              type="password"
-              id="confirmPassword"
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              value={confirmPassword}
-            />
-          </div>
+              Submit
+            </button>
+          </form>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handlePasswordSubmit();
+            }}
+            className={"md:w-[50%] " + (currentForm === 1 ? "" : "hidden")}
+          >
+            <div className="flex w-full md:w-auto flex-col mb-4">
+              <label htmlFor="" className="font-heading text-slate-300">
+                New Password <span className="text-red-600">*</span>
+              </label>
+              <input
+                className={
+                  "p-2 rounded-md  mt-2 focus:border-main-color border-b-4 w-full md:w-auto outline-none bg-gray-700"
+                }
+                required={true}
+                min={8}
+                type="password"
+                id="password"
+                onChange={(e) => setNewPassword(e.target.value)}
+                value={newPassword}
+              />
+            </div>
 
-          <div className="flex w-full md:w-auto flex-col">
-            <label
-              htmlFor="oldPassword"
-              className="font-heading text-slate-300"
+            <div className="flex w-full md:w-auto flex-col mb-4">
+              <label
+                htmlFor="confirmPassword"
+                className="font-heading text-slate-300"
+              >
+                Confirm Password <span className="text-red-600">*</span>
+              </label>
+              <input
+                className={
+                  "p-2 rounded-md  mt-2 focus:border-main-color border-b-4 w-full md:w-auto outline-none bg-gray-700"
+                }
+                required={true}
+                min={8}
+                type="password"
+                id="confirmPassword"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                value={confirmPassword}
+              />
+            </div>
+
+            <div className="flex w-full md:w-auto flex-col">
+              <label
+                htmlFor="oldPassword"
+                className="font-heading text-slate-300"
+              >
+                Old Password <span className="text-red-600">*</span>
+              </label>
+              <input
+                className={
+                  "p-2 rounded-md  mt-2 focus:border-main-color border-b-4 w-full md:w-auto outline-none bg-gray-700"
+                }
+                required={true}
+                min={8}
+                type="password"
+                id="oldPassword"
+                onChange={(e) => setOldPassword(e.target.value)}
+                value={oldPassword}
+              />
+            </div>
+            <button
+              type="submit"
+              className="p-2 pl-4 pr-4 rounded-lg mt-4 bg-main-color hover:bg-yellow-500 transition-all duration-200"
             >
-              Old Password <span className="text-red-600">*</span>
-            </label>
-            <input
-              className={
-                "p-2 rounded-md  mt-2 focus:border-main-color border-b-4 w-full md:w-auto outline-none bg-gray-700"
-              }
-              required={true}
-              min={8}
-              type="password"
-              id="oldPassword"
-              onChange={(e) => setOldPassword(e.target.value)}
-              value={oldPassword}
-            />
-          </div>
-          <button
-            type="submit"
-            className="p-2 pl-4 pr-4 rounded-lg mt-4 bg-main-color hover:bg-yellow-500 transition-all duration-200"
-          >
-            Submit
-          </button>
-        </form>
+              Submit
+            </button>
+          </form>
 
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleEmailSubmit();
-          }}
-          className={"md:w-[50%] " + (currentForm === 2 ? "" : " hidden ")}
-        >
-          <div className="flex md:w-auto w-full flex-col">
-            <label htmlFor="email" className="font-heading text-slate-300">
-              Email<span className="text-red-600">*</span>
-            </label>
-            <input
-              className={
-                "p-2 rounded-md  mt-2 focus:border-main-color border-b-4 w-full md:w-auto outline-none bg-gray-700 " +
-                (currentEmail.current == newEmail &&
-                  " border-red-500 focus:border-red-500")
-              }
-              required={true}
-              type="email"
-              id="email"
-              onChange={(e) => setNewEmail(e.target.value)}
-              value={newEmail}
-            />
-          </div>
-          <button
-            type="submit"
-            className="p-2 pl-4 pr-4 rounded-lg mt-4 bg-main-color hover:bg-yellow-500 transition-all duration-200"
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleEmailSubmit();
+            }}
+            className={"md:w-[50%] " + (currentForm === 2 ? "" : " hidden ")}
           >
-            Submit
-          </button>
-        </form>
-      </div>
-    </main>
-  );
+            <div className="flex md:w-auto w-full flex-col">
+              <label htmlFor="email" className="font-heading text-slate-300">
+                Email<span className="text-red-600">*</span>
+              </label>
+              <input
+                className={
+                  "p-2 rounded-md  mt-2 focus:border-main-color border-b-4 w-full md:w-auto outline-none bg-gray-700 " +
+                  (currentEmail.current == newEmail &&
+                    " border-red-500 focus:border-red-500")
+                }
+                required={true}
+                type="email"
+                id="email"
+                onChange={(e) => setNewEmail(e.target.value)}
+                value={newEmail}
+              />
+            </div>
+            <button
+              type="submit"
+              className="p-2 pl-4 pr-4 rounded-lg mt-4 bg-main-color hover:bg-yellow-500 transition-all duration-200"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </main>
+    );
+  else if (status === "unauthenticated")
+    return (
+      <main className="mainStylesDefault  text-white">
+        <LoginMessage />
+      </main>
+    );
+  else
+    return (
+      <main className="mainStylesDefault gap-5 flex flex-col p-4">
+        <GameShowCaseSkeleton />
+      </main>
+    );
 };
 
 export default page;

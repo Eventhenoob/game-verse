@@ -11,6 +11,7 @@ import Link from "next/link";
 import DeveloperList from "@/components/DeveloperList";
 import AddToWishlistButton from "@/components/AddToWishlistButton";
 import { useWishlist } from "@/context/WishlistProvider/WishlistProvider";
+import { useSession } from "next-auth/react";
 
 interface platform {
   name: string;
@@ -42,6 +43,7 @@ export interface gameData {
 }
 
 const GameShowCase = ({ gameId }: { gameId: number }) => {
+  const { status } = useSession();
   const { error, gameData, retry } = useGame(gameId);
   const { add, remove, wishlist } = useWishlist();
 
@@ -90,14 +92,16 @@ const GameShowCase = ({ gameId }: { gameId: number }) => {
             <h1 className="  font-heading text-4xl md:text-6xl ">
               {gameData.name}
             </h1>
-            <AddToWishlistButton
-              add={add}
-              size="lg"
-              isTrans={true}
-              remove={remove}
-              gameId={gameId}
-              isAdded={wishlist.includes(gameId)}
-            />
+            {status === "authenticated" && (
+              <AddToWishlistButton
+                add={add}
+                size="lg"
+                isTrans={true}
+                remove={remove}
+                gameId={gameId}
+                isAdded={wishlist.includes(gameId)}
+              />
+            )}
           </div>
           {parse(gameData.description)}
           <div className="flex md:flex-row flex-col justify-evenly ">
