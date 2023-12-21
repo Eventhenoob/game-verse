@@ -1,4 +1,4 @@
-import { creatorData } from "@/components/CreatorShowCase/CreatorShowCase";
+import { creatorData } from "@/components/ShowCases/CreatorShowCase/CreatorShowCase";
 import useData from "./useData";
 
 const useCreator = (id: string) => {

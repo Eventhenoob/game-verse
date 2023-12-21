@@ -1,4 +1,4 @@
-import { TagData } from "@/components/TagShowCase/TagShowCase";
+import { TagData } from "@/components/ShowCases/TagShowCase/TagShowCase";
 import useData from "./useData";
 
 const useCreator = (id: string) => {

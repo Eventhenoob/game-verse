@@ -3,7 +3,6 @@ import WishlistTray from "@/components/WishlistTray";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
-import { GiPlagueDoctorProfile } from "react-icons/gi";
 import { signOut } from "next-auth/react";
 import LoginMessage from "@/components/LoginMessage";
 import GameShowCaseSkeleton from "@/components/ShowCases/GameShowCase/GameShowCaseSkeleton";

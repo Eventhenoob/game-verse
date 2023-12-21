@@ -1,5 +1,5 @@
 import useData from "./useData";
-import { PlatformData } from "@/components/PlatformShowCase/PlatfromShowCase";
+import { PlatformData } from "@/components/ShowCases/PlatformShowCase/PlatfromShowCase";
 
 const usePlatform = (platfromId: number) => {
   const { data, error, retry } = useData<PlatformData>(

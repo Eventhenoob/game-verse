@@ -1,10 +1,10 @@
 "use client";
 interface Props {
-  isNextNull: boolean;
+  isNextNull?: boolean;
   error: string;
   retry: () => void;
 }
-const ApiErrorHandler = ({ isNextNull, error, retry }: Props) => {
+const ApiErrorHandler = ({ isNextNull = true, error, retry }: Props) => {
   return (
     <div
       className={

@@ -12,7 +12,7 @@ const StoreShowCase = ({ storeId }: { storeId: number }) => {
   const { error, retry, storeData } = useStore(storeId);
   return (
     <>
-      <ApiErrorHandler error={error} retry={retry} />
+      <ApiErrorHandler error={error} retry={retry} isNextNull={true} />
       <div
         className={
           " m-auto mb-8 md:w-auto w-3/4 gap-10 items-center justify-center md:justify-evenly  " +
