@@ -56,7 +56,7 @@ const SearchBox = () => {
   }, []);
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex z-30 flex-col w-full">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -75,11 +75,11 @@ const SearchBox = () => {
           }
         }}
         className={
-          "md:w-full md:relative md:visible md:top-0 pl-2 border-b-4  flex rounded-md items-center overflow-hidden transition-colors duration-300 " +
+          "md:w-full md:relative  md:visible md:top-0 pl-2 border-b-4  flex rounded-md items-center overflow-hidden transition-colors duration-300 " +
           (isActive
             ? "bg-slate-200 border-green-500 "
             : "bg-gray-600 border-gray-600") +
-          " absolute top-20 w-[90%] left-[50%] -translate-x-[50%] m-auto " +
+          " absolute top-20  w-[90%] left-[50%] -translate-x-[50%] m-auto " +
           (mobileSearch ? " visible " : " invisible ")
         }
       >
