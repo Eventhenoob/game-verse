@@ -8,6 +8,7 @@ interface Props {
   remove: (gameId: number) => void;
   size?: "sm" | "lg";
   isTrans?: boolean;
+  toTop?: boolean;
 }
 
 const AddToWishlistButton = ({
@@ -17,26 +18,27 @@ const AddToWishlistButton = ({
   remove,
   size = "sm",
   isTrans = false,
+  toTop = false,
 }: Props) => {
   const [isMouseEntered, setIsMouseEntered] = useState(false);
   return (
-    <>
+    <div className={toTop ? " absolute top-0 right-0 " : " "}>
       <p
         className={
-          "p-3 bg-opacity-75 text-white transition-all duration-1000 bg-black absolute -top-5 right-6 rounded-sm " +
-          (isMouseEntered ? "visible opacity-100 " : " invisible opacity-0")
+          "p-3 bg-opacity-75 shrink-0 text-white w-max transition-all duration-1000 bg-black absolute -top-[3rem]  -left-[8rem] rounded-2xl " +
+          (isMouseEntered ? "visible opacity-100 " : " invisible opacity-0 ")
         }
       >
-        Add to Wishlist
+        {isAdded ? "Remove From Wishlist" : "Add To Wishlist"}
       </p>
 
       <button
         onMouseEnter={() => setIsMouseEntered(true)}
         onMouseLeave={() => setIsMouseEntered(false)}
         className={
-          "absolute top-3 right-3 active:scale-125 transition-all duration-200  bg-opacity-100 bg-black text-white flex justify-center items-center  rounded-sm hover:scale-110" +
+          " active:scale-125 transition-all duration-200  bg-opacity-100 bg-black text-white flex justify-center items-center rounded-md rounded-tr-xl hover:scale-110" +
           (size === "sm" ? " w-8 h-8 " : " w-14 h-14 text-2xl ") +
-          (isTrans && " bg-opacity-0 ")
+          (isTrans && " bg-transparent ")
         }
         onClick={() => {
           if (isAdded) remove(gameId);
@@ -45,7 +47,7 @@ const AddToWishlistButton = ({
       >
         {isAdded ? <MdBookmarkAdd /> : <MdOutlineBookmarkAdd />}
       </button>
-    </>
+    </div>
   );
 };
 

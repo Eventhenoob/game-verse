@@ -12,7 +12,13 @@ const page = ({
           Search Results
         </h1>
       </div>
-      <GameCardGrid params={{ search: searchValue }} />
+      <GameCardGrid
+        Shorting={false}
+        params={{
+          search: searchValue,
+          search_precise: true,
+        }}
+      />
     </main>
   );
 };

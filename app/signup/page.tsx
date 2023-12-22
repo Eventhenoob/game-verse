@@ -38,6 +38,13 @@ const page = () => {
   } = useForm<FormData>({ resolver: zodResolver(schema) });
   const [showError, setShowError] = useState("");
 
+  const toggleShowError = (message: string) => {
+    setShowError(message);
+    setTimeout(() => {
+      setShowError("");
+    }, 4000);
+  };
+
   const handleFormSubmit = async (data: FormData) => {
     try {
       const result = await axios.post("/api/user", {
@@ -58,14 +65,14 @@ const page = () => {
     } catch (error: any) {
       if (error.response) {
         if (error.response.status === 400 || error.response.status === 409) {
-          setShowError(
+          toggleShowError(
             `${error.response.data.error}: ${error.response.data.message}`
           );
         } else {
-          setShowError("An error occurred. Please try again later.");
+          toggleShowError("An error occurred. Please try again later.");
         }
       } else {
-        setShowError("Network error. Please check your connection.");
+        toggleShowError("Network error. Please check your connection.");
       }
     }
   };
@@ -75,7 +82,7 @@ const page = () => {
         <main className="mainStylesDefault relative flex md:flex-row justify-center items-center flex-col mb-20">
           <div className="w-[90%] flex relative bg-gray-900 justify-center items-center rounded-3xl overflow-hidden lg:items-stretch lg:flex-row flex-col">
             {showError && (
-              <p className="text-red-600  text-4xl absolute top-0">
+              <p className="bg-red-600 p-4 fixed w-screen top-20 left-1 z-30 text-black font-heading ">
                 {showError}
               </p>
             )}

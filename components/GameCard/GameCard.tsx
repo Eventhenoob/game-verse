@@ -30,7 +30,7 @@ const GameCard = ({
   const { status } = useSession();
   const { add, remove, wishlist } = useWishlist();
   return (
-    <div className="p-0 overflow-hidden relative hover:scale-110 transition-all duration-200 shadow-2xl cursor-pointer rounded-xl w-full sm:w-72 md:w-64 lg:w-72 shrink-0 bg-zinc-900">
+    <div className="p-0 relative hover:scale-110 transition-all duration-200 shadow-2xl cursor-pointer rounded-xl w-full sm:w-72 md:w-64 lg:w-72 shrink-0 bg-zinc-900">
       <img
         alt={name}
         src={background_image}
@@ -38,6 +38,7 @@ const GameCard = ({
       />
       {status === "authenticated" && (
         <AddToWishlistButton
+          toTop={true}
           add={add}
           gameId={+id}
           isAdded={wishlist.includes(+id)}

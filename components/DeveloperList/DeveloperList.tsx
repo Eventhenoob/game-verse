@@ -11,17 +11,9 @@ const DeveloperList = ({ gameId }: { gameId: number }) => {
   const { developersData, error, retry } = useDevelopementTeam(gameId);
   return (
     <>
-      <ApiErrorHandler error={error} retry={retry} />;
-      <div
-        className={
-          "flex w-10/12 m-auto gap-4 " +
-          (developersData !== null || error !== "" ? " hidden " : "")
-        }
-      >
-        {/* <developersDataSkeleton /> */}
-      </div>
+      <ApiErrorHandler error={error} retry={retry} />
       {developersData && (
-        <div className="w-100% overflow-x-scroll removeScroll flex gap-4  ">
+        <div className="w-100% mt-4 overflow-x-scroll removeScroll flex gap-4  ">
           {developersData.map((developer) => (
             <Link
               href={`/games/creators/${developer.id}`}

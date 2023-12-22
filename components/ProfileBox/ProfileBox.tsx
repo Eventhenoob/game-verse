@@ -41,10 +41,10 @@ const ProfileBox = () => {
       )}
       {status === "unauthenticated" && (
         <button
-          className="shrink-0 bg-main-color hover:bg-yellow-300 transition-all lg:block hidden duration-200 font-retro  p-[2px] pl-[8px] pr-[8px]"
+          className="shrink-0 bg-main-color rounded-md hover:bg-yellow-300 transition-all lg:block hidden duration-200 font-heading uppercase  p-[4px] pl-[8px] pr-[8px]"
           onClick={() => signIn()}
         >
-          Log in
+          Login
         </button>
       )}
     </>

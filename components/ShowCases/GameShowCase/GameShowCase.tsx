@@ -72,8 +72,8 @@ const GameShowCase = ({ gameId }: { gameId: number }) => {
               alt={gameData.name + " image"}
             />
           </div>
-          <div className="flex items-center gap-4">
-            <p className="bg-white text-black p-2 pt-1 pb-1 text-sm rounded-md">
+          <div className="flex w-full items-center gap-2 md:gap-4">
+            <p className="bg-white text-black p-2 pt-1 pb-1 text-xs md:text-sm rounded-md">
               {gameData.released}
             </p>
             <div className="flex gap-2">
@@ -81,26 +81,28 @@ const GameShowCase = ({ gameId }: { gameId: number }) => {
                 gameData.parent_platforms.map((item) => item.platform.name)
               )}
             </div>
-            <p className="">
+            <p className="flex flex-wrap text-sm md:text-base md:block">
               Average PlayTime:{" "}
               <span className="font-retro text-main-color uppercase">
                 {gameData.playtime} Hours
               </span>
             </p>
           </div>
-          <div className="relative ">
-            <h1 className="  font-heading text-4xl md:text-6xl ">
+          <div className="relative flex justify-between items-center">
+            <h1 className=" font-heading text-2xl sm:text-4xl inline-block md:text-6xl ">
               {gameData.name}
             </h1>
             {status === "authenticated" && (
-              <AddToWishlistButton
-                add={add}
-                size="lg"
-                isTrans={true}
-                remove={remove}
-                gameId={gameId}
-                isAdded={wishlist.includes(gameId)}
-              />
+              <div className="relative">
+                <AddToWishlistButton
+                  add={add}
+                  size="lg"
+                  isTrans={true}
+                  remove={remove}
+                  gameId={gameId}
+                  isAdded={wishlist.includes(gameId)}
+                />
+              </div>
             )}
           </div>
           {parse(gameData.description)}

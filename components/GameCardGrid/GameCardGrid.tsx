@@ -9,9 +9,10 @@ import OrderByTray from "../OrderByTray";
 
 interface Props {
   params?: {};
+  Shorting?: boolean;
 }
 
-const GameCardGrid = ({ params = {} }: Props) => {
+const GameCardGrid = ({ Shorting = true, params = {} }: Props) => {
   const [currentOrder, setCurrentOrder] = useState("-ratings");
   const [pageCounter, setPageCounter] = useState(1);
   const [currentNext, setCurrentNext] = useState<string | null>("temp");
@@ -69,7 +70,12 @@ const GameCardGrid = ({ params = {} }: Props) => {
 
   return (
     <>
-      <div className="flex items-center md:justify-start mb-8 justify-end pr-6 pl-6">
+      <div
+        className={
+          "flex items-center md:justify-start mb-8 justify-end pr-6 pl-6 " +
+          (!Shorting && " hidden ")
+        }
+      >
         <OrderByTray setValueFunction={setCurrentOrder} />
       </div>
 

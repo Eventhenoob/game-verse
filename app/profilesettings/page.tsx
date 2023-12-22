@@ -233,7 +233,7 @@ const page = () => {
 
             <button
               type="submit"
-              className="p-2 pl-4 pr-4 rounded-lg mt-4 bg-main-color hover:bg-yellow-500 transition-all duration-200"
+              className="p-2 pl-4 pr-4 rounded-lg mt-4 bg-main-color hover:bg-yellow-500 transition-all font-retro duration-200"
             >
               Submit
             </button>
@@ -303,7 +303,7 @@ const page = () => {
             </div>
             <button
               type="submit"
-              className="p-2 pl-4 pr-4 rounded-lg mt-4 bg-main-color hover:bg-yellow-500 transition-all duration-200"
+              className="p-2 pl-4 pr-4 rounded-lg mt-4 bg-main-color hover:bg-yellow-500 font-retro transition-all duration-200"
             >
               Submit
             </button>
@@ -335,7 +335,7 @@ const page = () => {
             </div>
             <button
               type="submit"
-              className="p-2 pl-4 pr-4 rounded-lg mt-4 bg-main-color hover:bg-yellow-500 transition-all duration-200"
+              className="p-2 pl-4 pr-4 rounded-lg mt-4 font-retro bg-main-color hover:bg-yellow-500 transition-all duration-200"
             >
               Submit
             </button>
