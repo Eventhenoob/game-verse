@@ -41,7 +41,7 @@ const Navigation = () => {
       >
         <RxHamburgerMenu />
       </button>
-      <Link href={"/games"} className="z-50 relative shrink-0 mr-2 ">
+      <Link href={"/"} className="z-50 relative shrink-0 mr-2 ">
         <Image
           src={"/logosmall.png"}
           alt="Logo"
