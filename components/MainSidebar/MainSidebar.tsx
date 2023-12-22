@@ -119,7 +119,7 @@ const MainSidebar = ({ className }: Props) => {
         </li>
         <li className="">
           <Link
-            href={"/"}
+            href={"/games/platforms/4"}
             className="hover:text-main-color group   transition-all duration-300 flex items-center gap-4 text-white"
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
@@ -130,7 +130,7 @@ const MainSidebar = ({ className }: Props) => {
         </li>
         <li className="">
           <Link
-            href={"/"}
+            href={"/games/platforms/18"}
             className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 text-white"
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
@@ -141,7 +141,7 @@ const MainSidebar = ({ className }: Props) => {
         </li>
         <li className="">
           <Link
-            href={"/"}
+            href={"/games/platforms/1"}
             className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 "
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
@@ -163,7 +163,7 @@ const MainSidebar = ({ className }: Props) => {
 
         <li className="">
           <Link
-            href={"/"}
+            href={"/games/genres/4"}
             className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 text-white"
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
@@ -174,7 +174,7 @@ const MainSidebar = ({ className }: Props) => {
         </li>
         <li className="">
           <Link
-            href={"/"}
+            href={"/games/genres/10"}
             className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 "
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
@@ -185,7 +185,7 @@ const MainSidebar = ({ className }: Props) => {
         </li>
         <li className="">
           <Link
-            href={"/"}
+            href={"/games/genres/5"}
             className="hover:text-main-color group transition-all duration-300 flex items-center gap-4 "
           >
             <div className="p-2 text-white group-[:hover]:bg-main-color transition-all duration-300 bg-black rounded-xl ">
