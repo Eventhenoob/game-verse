@@ -17,6 +17,15 @@ export async function POST(req: Request) {
       ); // Use a 400 Bad Request status code
     }
 
+    if (!body.isValidated) {
+      return NextResponse.json(
+        {
+          error: "Not verified",
+          message: "User is not verified",
+        },
+        { status: 400 }
+      ); // Use a 400 Bad Request status code
+    }
     connectTo("user");
     const foundUser = await userModel.findOne({ email: body.email });
     if (foundUser) {

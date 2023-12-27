@@ -2,7 +2,7 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
 import { signIn, useSession } from "next-auth/react";
 import Lottie from "lottie-react";
@@ -28,20 +28,33 @@ const schema = z
 type FormData = z.infer<typeof schema>;
 
 const page = () => {
+  const [OtpToCheck, setOtpToCheck] = useState<string | null>(null);
+  const [isValidated, setIsValidated] = useState(false);
+  const [canSendMail, setCanSendMail] = useState(true);
   const { status } = useSession();
   const [selectedAvator, setSelectedAvator] = useState(1);
 
   const {
+    getValues,
     register,
     handleSubmit,
+    getFieldState,
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
   const [showError, setShowError] = useState("");
+  const [showSuccess, setShowSuccess] = useState("");
 
   const toggleShowError = (message: string) => {
     setShowError(message);
     setTimeout(() => {
       setShowError("");
+    }, 4000);
+  };
+
+  const toggleShowSuccess = (message: string) => {
+    setShowSuccess(message);
+    setTimeout(() => {
+      setShowSuccess("");
     }, 4000);
   };
 
@@ -52,6 +65,7 @@ const page = () => {
         email: data.email,
         password: data.password,
         avator: selectedAvator,
+        isValidated,
       });
 
       if (result.status === 201) {
@@ -84,6 +98,11 @@ const page = () => {
             {showError && (
               <p className="bg-red-600 p-4 fixed w-screen top-20 left-1 z-30 text-black font-heading ">
                 {showError}
+              </p>
+            )}
+            {showSuccess && (
+              <p className="bg-green-600 p-4 fixed w-screen top-20 left-1 z-30 text-white font-heading ">
+                {showSuccess}
               </p>
             )}
             <div className="lg:w-3/6 text-white flex items-center justify-center">
@@ -126,7 +145,9 @@ const page = () => {
                   Email<span className="text-red-600">*</span>
                 </label>
                 <input
-                  {...register("email")}
+                  {...register("email", {
+                    onChange: (e) => setIsValidated(false),
+                  })}
                   id="email"
                   type="email"
                   className={
@@ -135,6 +156,55 @@ const page = () => {
                   }
                 />
                 {errors.email && <p className="">{errors.email.message}</p>}
+                <button
+                  type="button"
+                  className="text-white bg-blue-600 transition-all duration-300 p-2 text-xs uppercase mt-4 block hover:bg-blue-700 font-bold rounded-lg disabled:bg-blue-400 disabled:cursor-not-allowed"
+                  onClick={() => {
+                    const email = getValues().email;
+                    if (email != "") {
+                      axios
+                        .post("/api/user/otp", { email })
+                        .then((res) => {
+                          setOtpToCheck(res.data.otpCode);
+                          setCanSendMail(false);
+                          setTimeout(() => setCanSendMail(true), 60 * 1000);
+                          toggleShowSuccess(
+                            "otp has been sent to the given mail."
+                          );
+                        })
+                        .catch((e: any) => {
+                          toggleShowError(e.message);
+                        });
+                    }
+                  }}
+                  disabled={!canSendMail}
+                >
+                  Send otp
+                </button>
+                <label
+                  htmlFor="otp"
+                  className="text-white mt-4  font-bold text-xs mb-2 block"
+                >
+                  Otp<span className="text-red-600">*</span>
+                </label>
+                <input
+                  disabled={canSendMail || OtpToCheck === null}
+                  onChange={(e) => {
+                    const otpCode = e.target.value;
+                    if (otpCode.length === 6) {
+                      if (OtpToCheck === otpCode) {
+                        setIsValidated(true);
+                        toggleShowSuccess("Otp verified");
+                      } else {
+                        toggleShowError("Otp didn't matched with the input");
+                      }
+                    }
+                  }}
+                  maxLength={6}
+                  id="otp"
+                  type="number"
+                  className="disabled:bg-slate-500 bg-gray-800 removeScroll max-w-[5rem] outline-2 p-3 pl-4 text-sm text-slate-300 outline-none rounded-xl"
+                />
               </div>
 
               <div className="w-full mt-10">
