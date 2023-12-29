@@ -36,7 +36,12 @@ const ProfileBox = () => {
           href={"/profile"}
           className="cursor-pointer overflow-hidden w-8 h-8 ml-3 sm:ml-0 sm:w-10 sm:h-10 shrink-0 rounded-full border-[2px] border-transparent hover:border-main-color active:border-main-color focus:border-main-color"
         >
-          {<img src={`/avator${data?.user?.image}.png`} alt="user image" />}
+          {
+            <img
+              src={`/avator-small${data?.user?.image}.png`}
+              alt="user image"
+            />
+          }
         </Link>
       )}
       {status === "unauthenticated" && (

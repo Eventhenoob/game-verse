@@ -40,7 +40,10 @@ const MainSidebar = ({ className }: Props) => {
             Profile
             {data && (
               <div className="w-9 h-9 overflow-hidden bg-green-500 rounded-full">
-                <img src={`/avator${data.user?.image}.png`} alt="" />
+                <img
+                  src={`/avator-small${data.user?.image}.png`}
+                  alt="profile image"
+                />
               </div>
             )}
           </Link>
