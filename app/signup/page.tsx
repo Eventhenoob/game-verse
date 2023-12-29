@@ -38,7 +38,6 @@ const page = () => {
     getValues,
     register,
     handleSubmit,
-    getFieldState,
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
   const [showError, setShowError] = useState("");
@@ -69,6 +68,7 @@ const page = () => {
       });
 
       if (result.status === 201) {
+        toggleShowSuccess("Account Created Successfully!");
         await signIn("credentials", {
           email: data.email,
           password: data.password,
@@ -175,7 +175,6 @@ const page = () => {
                         axios
                           .post("/api/user/otp", { email })
                           .then((res) => {
-                            console.log(res.data.otpCode);
                             setOtpToCheck(res.data.otpCode);
                             setCanSendMail(false);
                             setTimeout(() => setCanSendMail(true), 60 * 1000);

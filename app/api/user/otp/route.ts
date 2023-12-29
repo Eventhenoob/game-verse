@@ -16,8 +16,8 @@ export async function POST(req: Request) {
       );
 
     const otpCode = generateOTP(6);
-    const resp = await sendMail(body.email, otpCode);
-    console.log(resp);
+    await sendMail(body.email, otpCode);
+
     return NextResponse.json(
       {
         message: "success",
@@ -26,7 +26,6 @@ export async function POST(req: Request) {
       { status: 200 }
     );
   } catch (e) {
-    console.log(e);
     return NextResponse.json(
       {
         error: "Internal Server Error",

@@ -100,7 +100,7 @@ const page = () => {
               </button>
               <div className="font-retro flex gap-4">
                 <a
-                  href=""
+                  href="/forgotpassword"
                   className="hover:text-slate-300 transition-color duration-200  text-gray-400 mt-2 text-sm"
                 >
                   Forgot Password?
