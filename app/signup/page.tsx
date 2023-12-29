@@ -145,42 +145,56 @@ const page = () => {
                   Email<span className="text-red-600">*</span>
                 </label>
                 <input
-                  {...register("email", {
-                    onChange: (e) => setIsValidated(false),
-                  })}
+                  {...register("email")}
+                  onChange={(e) => {
+                    setIsValidated(false);
+                    register("email").onChange(e);
+                  }}
                   id="email"
+                  disabled={isValidated}
                   type="email"
                   className={
-                    "bg-gray-800 w-full outline-2 p-3 pl-4 text-sm text-slate-300 outline-none rounded-xl" +
+                    "disabled:bg-slate-500 bg-gray-800 w-full outline-2 p-3 pl-4 text-sm text-slate-300 outline-none rounded-xl" +
                     (errors.email ? "  outline-red-800 " : " ")
                   }
                 />
                 {errors.email && <p className="">{errors.email.message}</p>}
-                <button
-                  type="button"
-                  className="text-white bg-blue-600 transition-all duration-300 p-2 text-xs uppercase mt-4 block hover:bg-blue-700 font-bold rounded-lg disabled:bg-blue-400 disabled:cursor-not-allowed"
-                  onClick={() => {
-                    const email = getValues().email;
-                    if (email != "") {
-                      axios
-                        .post("/api/user/otp", { email })
-                        .then((res) => {
-                          setOtpToCheck(res.data.otpCode);
-                          setCanSendMail(false);
-                          setTimeout(() => setCanSendMail(true), 60 * 1000);
-                          toggleShowSuccess(
-                            "otp has been sent to the given mail."
-                          );
-                        })
-                        .catch((e: any) => {
-                          toggleShowError(e.message);
-                        });
+                {!isValidated && (
+                  <button
+                    type="button"
+                    className={
+                      "text-white bg-blue-600 transition-all duration-300 p-2 text-xs uppercase mt-4 block hover:bg-blue-700 font-bold rounded-lg disabled:bg-blue-400 disabled:cursor-not-allowed "
                     }
-                  }}
-                  disabled={!canSendMail}
-                >
-                  Send otp
-                </button>
+                    onClick={() => {
+                      const email = getValues().email;
+                      if (
+                        email != "" &&
+                        email.length >= 4 &&
+                        email.includes("@")
+                      ) {
+                        axios
+                          .post("/api/user/otp", { email })
+                          .then((res) => {
+                            console.log(res.data.otpCode);
+                            setOtpToCheck(res.data.otpCode);
+                            setCanSendMail(false);
+                            setTimeout(() => setCanSendMail(true), 60 * 1000);
+                            toggleShowSuccess(
+                              "otp has been sent to the given mail."
+                            );
+                          })
+                          .catch((e: any) => {
+                            toggleShowError(e.message);
+                          });
+                      } else {
+                        toggleShowError("Provided Email is invalid");
+                      }
+                    }}
+                    disabled={!canSendMail}
+                  >
+                    Send otp
+                  </button>
+                )}
                 <label
                   htmlFor="otp"
                   className="text-white mt-4  font-bold text-xs mb-2 block"
@@ -188,7 +202,7 @@ const page = () => {
                   Otp<span className="text-red-600">*</span>
                 </label>
                 <input
-                  disabled={canSendMail || OtpToCheck === null}
+                  disabled={canSendMail || OtpToCheck === null || isValidated}
                   onChange={(e) => {
                     const otpCode = e.target.value;
                     if (otpCode.length === 6) {
