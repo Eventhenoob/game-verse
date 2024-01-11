@@ -6,7 +6,7 @@ import sendMail from "@/utils/sendMail";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    if (!body.email)
+    if (!body.email || !body.key)
       return NextResponse.json(
         {
           error: "Bad Request",
@@ -14,6 +14,16 @@ export async function POST(req: Request) {
         },
         { status: 400 }
       );
+
+    if (body.key != process.env.API_KEY) {
+      return NextResponse.json(
+        {
+          error: "Bad Request",
+          message: "Invalid Key Provided",
+        },
+        { status: 400 }
+      );
+    }
 
     const otpCode = generateOTP(6);
     await sendMail(body.email, otpCode);

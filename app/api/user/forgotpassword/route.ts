@@ -6,11 +6,21 @@ export async function PATCH(req: Request) {
   try {
     const body = await req.json();
 
-    if (!body.email || !body.password) {
+    if (!body.email || !body.password || !body.key) {
       return NextResponse.json(
         {
           error: "Bad Request",
           message: "Invalid Information Provided",
+        },
+        { status: 400 }
+      );
+    }
+
+    if (body.key != process.env.API_KEY) {
+      return NextResponse.json(
+        {
+          error: "Bad Request",
+          message: "Invalid Key Provided",
         },
         { status: 400 }
       );

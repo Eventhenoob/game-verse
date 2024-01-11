@@ -64,6 +64,7 @@ const page = () => {
         email: data.email,
         password: data.password,
         avator: selectedAvator,
+        key: "H@O230Cbh@50",
         isValidated,
       });
 
@@ -173,7 +174,7 @@ const page = () => {
                         email.includes("@")
                       ) {
                         axios
-                          .post("/api/user/otp", { email })
+                          .post("/api/user/otp", { email, key: "H@O230Cbh@50" })
                           .then((res) => {
                             setOtpToCheck(res.data.otpCode);
                             setCanSendMail(false);

@@ -7,7 +7,13 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    if (!body.username || !body.email || !body.password || !body.avator) {
+    if (
+      !body.username ||
+      !body.email ||
+      !body.password ||
+      !body.avator ||
+      !body.key
+    ) {
       return NextResponse.json(
         {
           error: "Bad Request",
@@ -15,6 +21,15 @@ export async function POST(req: Request) {
         },
         { status: 400 }
       ); // Use a 400 Bad Request status code
+    }
+    if (body.key != process.env.API_KEY) {
+      return NextResponse.json(
+        {
+          error: "Bad Request",
+          message: "Invalid Key Provided",
+        },
+        { status: 400 }
+      );
     }
 
     if (!body.isValidated) {
@@ -72,11 +87,21 @@ export async function PATCH(req: Request) {
   try {
     const body = await req.json();
 
-    if (!body.userEmail) {
+    if (!body.userEmail || !body.key) {
       return NextResponse.json(
         {
           error: "Bad Request",
           message: "Invalid Information Provided",
+        },
+        { status: 400 }
+      );
+    }
+
+    if (body.key != process.env.API_KEY) {
+      return NextResponse.json(
+        {
+          error: "Bad Request",
+          message: "Invalid Key Provided",
         },
         { status: 400 }
       );

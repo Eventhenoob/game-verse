@@ -58,6 +58,7 @@ const page = () => {
   const handleProflieSubmit = () => {
     axios
       .patch("/api/user", {
+        key: "H@O230Cbh@50",
         userEmail: currentEmail.current,
         name: newName,
         avator: newAvator,
@@ -78,6 +79,7 @@ const page = () => {
     if (newPassword === confirmPassword) {
       axios
         .patch("/api/user", {
+          key: "H@O230Cbh@50",
           userEmail: currentEmail.current,
           newPassword: newPassword,
           oldPassword: oldPassword,
@@ -100,6 +102,7 @@ const page = () => {
   const handleEmailSubmit = () => {
     axios
       .patch("/api/user", {
+        key: "H@O230Cbh@50",
         userEmail: currentEmail.current,
         email: newEmail,
       })

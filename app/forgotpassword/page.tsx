@@ -60,6 +60,7 @@ const forgotpassword = () => {
         isValid,
         email: data.email,
         password: data.password,
+        key: "H@O230Cbh@50",
       });
       toggleShowSuccess("Password Updated Successfully!");
     } catch (error: any) {
@@ -127,7 +128,7 @@ const forgotpassword = () => {
                       email.includes("@")
                     ) {
                       axios
-                        .post("/api/user/otp", { email })
+                        .post("/api/user/otp", { email, key: "H@O230Cbh@50" })
                         .then((res) => {
                           setOtpToCheck(res.data.otpCode);
                           setCanSendOtp(false);

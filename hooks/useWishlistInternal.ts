@@ -13,6 +13,7 @@ const useWishlistInternal = (email: string | null) => {
         .get("/api/wishlist", {
           signal: controler.signal,
           params: {
+            key: "H@O230Cbh@50",
             email,
           },
         })
@@ -32,6 +33,7 @@ const useWishlistInternal = (email: string | null) => {
       axios
         .delete("/api/wishlist", {
           params: {
+            key: "H@O230Cbh@50",
             gameId,
             email,
           },
@@ -55,6 +57,7 @@ const useWishlistInternal = (email: string | null) => {
     if (email) {
       axios
         .post("/api/wishlist", {
+          key: "H@O230Cbh@50",
           gameId,
           email,
         })

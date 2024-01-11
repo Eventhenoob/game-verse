@@ -5,13 +5,24 @@ import { NextResponse } from "next/server";
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const email = url.searchParams.get("email");
+  const key = url.searchParams.get("key");
 
   try {
-    if (!email) {
+    if (!email || !key) {
       return NextResponse.json(
         {
           error: "Bad Request",
           message: "Email parameter is required",
+        },
+        { status: 400 }
+      );
+    }
+
+    if (key != process.env.API_KEY) {
+      return NextResponse.json(
+        {
+          error: "Bad Request",
+          message: "Invalid Key Provided",
         },
         { status: 400 }
       );
@@ -43,9 +54,9 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   try {
-    const data = await req.json();
+    const body = await req.json();
 
-    if (!data.email || !data.gameId) {
+    if (!body.email || !body.gameId || !body.key) {
       return NextResponse.json(
         {
           error: "Bad Request",
@@ -55,8 +66,18 @@ export async function POST(req: Request) {
       );
     }
 
+    if (body.key != process.env.API_KEY) {
+      return NextResponse.json(
+        {
+          error: "Bad Request",
+          message: "Invalid Key Provided",
+        },
+        { status: 400 }
+      );
+    }
+
     connectTo("user");
-    const foundUser = await userModel.findOne({ email: data.email });
+    const foundUser = await userModel.findOne({ email: body.email });
 
     if (!foundUser) {
       return NextResponse.json(
@@ -68,7 +89,7 @@ export async function POST(req: Request) {
       );
     }
 
-    foundUser.wishlist.push(+data.gameId);
+    foundUser.wishlist.push(+body.gameId);
     foundUser.save();
 
     return NextResponse.json(
@@ -93,12 +114,23 @@ export async function DELETE(req: Request) {
     const url = new URL(req.url);
     const email = url.searchParams.get("email");
     const gameId = url.searchParams.get("gameId");
+    const key = url.searchParams.get("key");
 
     if (!email || !gameId) {
       return NextResponse.json(
         {
           error: "Bad Request",
           message: "Insufficient Parameters Provided",
+        },
+        { status: 400 }
+      );
+    }
+
+    if (key != process.env.API_KEY) {
+      return NextResponse.json(
+        {
+          error: "Bad Request",
+          message: "Invalid Key Provided",
         },
         { status: 400 }
       );
